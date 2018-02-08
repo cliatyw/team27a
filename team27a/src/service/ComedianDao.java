@@ -9,15 +9,13 @@ import java.sql.Connection;
 
 public class ComedianDao {
 	
-	public ComedianDao() {
-		
-	}
+	public ComedianDao() {}
 
 	public ArrayList<Comedian> selectActorList() {
-		ArrayList<Comedian> cd = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		Connection conn = null;
+		ArrayList<Comedian> arrayComedian = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		Connection connection = null;
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -25,21 +23,21 @@ public class ComedianDao {
 			String dbUser = "root";
 			String dbPass = "java0000";
 	
-			conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
-			pstmt = conn.prepareStatement("select * from comedian");
-			rs = pstmt.executeQuery();
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			preparedStatement = connection.prepareStatement("select * from comedian");
+			resultSet = preparedStatement.executeQuery();
 			
-			cd = new ArrayList<Comedian>();
-			while(rs.next()){
-				Comedian c = new Comedian();
-				String comedianId = rs.getString("comedianId");
-				String comedianName = rs.getString("comedianName");
-				String comedianAge = rs.getString("comedianAge");
+			arrayComedian = new ArrayList<Comedian>();
+			while(resultSet.next()){
+				Comedian comedian = new Comedian();
+				String comedianId = resultSet.getString("comedian_id");
+				String comedianName = resultSet.getString("comedian_name");
+				String comedianAge = resultSet.getString("comedian_age");
 	
-				c.setComedianId(Integer.parseInt(comedianId));
-				c.setComedianName(comedianName);
-				c.setComedianAge(Integer.parseInt(comedianAge));
-				cd.add(c);
+				comedian.setComedianId(Integer.parseInt(comedianId));
+				comedian.setComedianName(comedianName);
+				comedian.setComedianAge(Integer.parseInt(comedianAge));
+				arrayComedian.add(comedian);
 
 			}
 
@@ -49,10 +47,10 @@ public class ComedianDao {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
-			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+			if (preparedStatement != null) try { preparedStatement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
 		}
-		return cd;
+		return arrayComedian;
 	}
 }
