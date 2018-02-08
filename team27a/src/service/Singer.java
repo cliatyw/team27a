@@ -1,25 +1,31 @@
 package service;
 public class Singer {
-	private String singer_id;
-	private String singer_name;
+	private String singerId;
+	private String singerName;
+	private String singerAge;
 	
-	public String getSinger_id() {
-		return singer_id;
+	
+	public String getSingerId() {
+		return singerId;
 	}
-	public void setSinger_id(String singer_id) {
-		this.singer_id = singer_id;
+	public void setSingerId(String singerId) {
+		this.singerId = singerId;
 	}
-	public String getSinger_name() {
-		return singer_name;
+	public String getSingerName() {
+		return singerName;
 	}
-	public void setSinger_name(String singer_name) {
-		this.singer_name = singer_name;
+	public void setSingerName(String singerName) {
+		this.singerName = singerName;
 	}
-	public int getSinger_age() {
-		return singer_age;
+	public String getSingerAge() {
+		return singerAge;
 	}
-	public void setSinger_age(int singer_age) {
-		this.singer_age = singer_age;
+	public void setSingerAge(String singerAge) {
+		this.singerAge = singerAge;
 	}
-	private int singer_age;
+	
+	
+	
+	
+
 }

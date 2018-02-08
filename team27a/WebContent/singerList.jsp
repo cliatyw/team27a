@@ -17,16 +17,16 @@ ResultSet rs = null;
 SingerDao db = new SingerDao();
 conn = db.driverDbcon();
 
-pstmt = conn.prepareStatement("select * from singer");
+pstmt = conn.prepareStatement("select * from actress");
 
 rs = pstmt.executeQuery();
 
 while(rs.next()){
 %>
 		<tr>
-			<td>id값 : <%= rs.getString("singer_id")%></td>
-			<td>name값 : <%= rs.getString("singer_name")%></td>
-			<td>age값 : <%= rs.getString("singer_age")%></td><br>
+			<td>id값 : <%= rs.getString("actressId")%></td>
+			<td>name값 : <%= rs.getString("actressName")%></td>
+			<td>age값 : <%= rs.getString("actressAge")%></td><br>
 		</tr>
 <%		
 		}
