@@ -7,6 +7,39 @@
 <title>Insert title here</title>
 </head>
 <body>
- ¾È³ç!³ª´Â ±èµµÈñ¶ó±¸ÇØ 
+	<head>team27a</head>
+	<table>
+		<tr>
+			<td>ÆÀ¿ø</td>
+			<td>¿ªÈ°</td>
+		</tr>
+		<tr>
+			<td>±èµµÈñ</td>
+			<td>actor</td>
+		</tr>
+		<tr>
+			<td>¹éÁöÈÆ</td>
+			<td>actress</td>
+		</tr>
+		<tr>
+			<td>ÃÖ»ó¿í</td>
+			<td>singer</td>
+		</tr>
+		<tr>
+			<td>Áø°æ¼ö</td>
+			<td>comedian</td>
+		</tr>
+		<tr>
+			<td>±è±â¼º</td>
+			<td>rapper</td>
+		</tr>
+	</table>
+	<ul>
+		<li><a href="<%= request.getContextPath() %>/actorList.jsp">actor list</a></li>
+		<li><a href="<%= request.getContextPath() %>/actressList.jsp">actress list</a></li>
+		<li><a href="<%= request.getContextPath() %>/singerList.jsp">singer list</a></li>
+		<li><a href="<%= request.getContextPath() %>/comedianList.jsp">comedian list</a></li>
+		<li><a href="<%= request.getContextPath() %>/rapperList.jsp">rapper list</a></li>
+	</ul>
 </body>
 </html>
