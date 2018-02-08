@@ -5,21 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
-
+import java.util.ArrayList;
 
 public class ActorDao {
-	public static void main(String[] args) {
-		
-		ActorDao a = new ActorDao();
-		a.selectActorList();
-	}
-	
-	public Actor selectActorList(){
+
+	public ArrayList<Actor> selectActorList(){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		ArrayList<Actor> arrayActor = null;
+		Actor actor = null;
 		
-		Actor actor = new Actor();
+		
 		
 		try {
 		Class.forName("com.mysql.jdbc.Driver");
@@ -31,23 +28,26 @@ public class ActorDao {
 		
 		
 		conn = DriverManager.getConnection(Driver, dbUser, dbPass);
-		pstmt = conn.prepareStatement("select * from actor");
+		pstmt = conn.prepareStatement("select * from actor order by actor_id");
 		rs = pstmt.executeQuery();
 		
 		
+		arrayActor = new ArrayList<Actor>();
 		
 		while(rs.next()){
 			
 			String actorId=rs.getString("actor_id");
 			String actorName=rs.getString("actor_name");
 			String actorAge=rs.getString("actor_age");
-			System.out.println(actorId+"<--actorId");
+			/*System.out.println(actorId+"<--actorId");
 			System.out.println(actorName+"<--actorName");
-			System.out.println(actorAge+"<--actorAge");
+			System.out.println(actorAge+"<--actorAge");*/
 			
+			actor = new Actor();
 			actor.setActorId(actorId);
 			actor.setActorName(actorName);
 			actor.setActorAge(actorAge);
+			arrayActor.add(actor);
 		}
 		
 		} catch(ClassNotFoundException e) {
@@ -59,7 +59,7 @@ public class ActorDao {
 			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
-		 return actor;
+		 return arrayActor;
 	}
 		
 

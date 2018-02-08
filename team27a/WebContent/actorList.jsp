@@ -2,23 +2,33 @@
 <!DOCTYPE html>
 <%@ page import = "service.Actor" %>
 <%@ page import = "service.ActorDao" %>
+<%@ page import = "java.util.ArrayList" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
+<table border="1">
+	<tr>
+	<th>아이디</th>
+	<th>이름</th>
+	<th>나이</th>
+	</tr>
 <%
 ActorDao actordao = new ActorDao();
-Actor actor =actordao.selectActorList();
+ArrayList<Actor> arrayActor =actordao.selectActorList();
 
-String Id=actor.getActorId();
-String Name=actor.getActorName();
-String Age=actor.getActorAge();
-
-%>
-
-
-
+for(int i=0;i<arrayActor.size();i++){
+	Actor actor = arrayActor.get(i);
+%>	
+	<tr>
+	<td><%=actor.getActorId() %></td>
+	<td><%=actor.getActorName() %></td>
+	<td><%=actor.getActorAge()%></td>
+	</tr>
+<%} %>
+	
+</table>
 </body>
 </html>
