@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<td>±è±â¼º</td>
-			<td>rapper</td>
+			<td>rapper, anaunseo</td>
 		</tr>
 	</table>
 	<ul>
@@ -40,6 +40,7 @@
 		<li><a href="<%= request.getContextPath() %>/singerList.jsp">singer list</a></li>
 		<li><a href="<%= request.getContextPath() %>/comedianList.jsp">comedian list</a></li>
 		<li><a href="<%= request.getContextPath() %>/rapperList.jsp">rapper list</a></li>
+		<li><a href="<%= request.getContextPath() %>/anaunseoList.jsp">anaunseo list</a></li>
 	</ul>
 </body>
 </html>
