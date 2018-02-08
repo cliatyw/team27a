@@ -19,8 +19,9 @@
 ActorDao actordao = new ActorDao();
 ArrayList<Actor> arrayActor =actordao.selectActorList();
 
-for(int i=0;i<arrayActor.size();i++){
-	Actor actor = arrayActor.get(i);
+
+	for(int i=0;i<arrayActor.size();i++){
+		Actor actor = arrayActor.get(i);
 %>	
 	<tr>
 	<td><%=actor.getActorId() %></td>

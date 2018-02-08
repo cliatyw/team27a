@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class ActorDao {
 
 	public ArrayList<Actor> selectActorList(){
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -18,8 +19,10 @@ public class ActorDao {
 		
 		
 		
+		
 		try {
-		Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
+		
 	
 		
 		String Driver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
@@ -49,16 +52,15 @@ public class ActorDao {
 			actor.setActorAge(actorAge);
 			arrayActor.add(actor);
 		}
-		
-		} catch(ClassNotFoundException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
+		}  finally {
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
+		
+	
 		 return arrayActor;
 	}
 		
