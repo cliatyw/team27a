@@ -11,7 +11,7 @@ public class ComedianDao {
 	
 	public ComedianDao() {}
 
-	public ArrayList<Comedian> selectActorList() {
+	public ArrayList<Comedian> selectComedianList() {
 		ArrayList<Comedian> arrayComedian = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -24,7 +24,7 @@ public class ComedianDao {
 			String dbPass = "java0000";
 	
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
-			preparedStatement = connection.prepareStatement("select * from comedian");
+			preparedStatement = connection.prepareStatement("select comedian_id,comedian_name,comedian_age from comedian");
 			resultSet = preparedStatement.executeQuery();
 			
 			arrayComedian = new ArrayList<Comedian>();

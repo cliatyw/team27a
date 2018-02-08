@@ -6,7 +6,7 @@
 <%
 request.setCharacterEncoding("euc-kr");
 ComedianDao cd = new ComedianDao();
-ArrayList<Comedian> arrayComedian = cd.selectActorList();
+ArrayList<Comedian> arrayComedian = cd.selectComedianList();
 %>
 <table border="1">
 	<tr>
