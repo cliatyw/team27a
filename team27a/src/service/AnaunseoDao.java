@@ -24,7 +24,7 @@ public class AnaunseoDao {
 			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			
-			preparedStatement = connection.prepareStatement("select * from tb_member");
+			preparedStatement = connection.prepareStatement("select * from anaunseo");
 			resultSet = preparedStatement.executeQuery(); //쿼리 실행 준비 및 실행
 			
 			while(resultSet.next()) { //쿼리에 내용 있으면 배열에 대입

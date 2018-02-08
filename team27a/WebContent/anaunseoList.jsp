@@ -8,6 +8,7 @@
 	AnaunseoDao anaunseoDao = new AnaunseoDao();
 	Anaunseo anaunseo = new Anaunseo();
 	ArrayList<Anaunseo> array = new ArrayList<Anaunseo>();
+	array = anaunseoDao.selectAnaunseoList();
 %>
 <table>
 	<tr>
@@ -15,4 +16,11 @@
 		<td>name</td>
 		<td>age</td>
 	</tr>
+	<%
+		for(int i=0; i<array.size(); i++){
+			
+		}
+	%>
+	
+	
 </table>
