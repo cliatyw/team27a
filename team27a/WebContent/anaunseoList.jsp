@@ -5,10 +5,14 @@
 <!DOCTYPE html>
 <%
 	request.setCharacterEncoding("euc-kr");
+
 	AnaunseoDao anaunseoDao = new AnaunseoDao();
 	Anaunseo anaunseo = new Anaunseo();
 	ArrayList<Anaunseo> array = new ArrayList<Anaunseo>();
+	
 	array = anaunseoDao.selectAnaunseoList();
+	
+	
 %>
 <table>
 	<tr>
@@ -16,11 +20,16 @@
 		<td>name</td>
 		<td>age</td>
 	</tr>
-	<%
-		for(int i=0; i<array.size(); i++){
-			
-		}
-	%>
-	
-	
+<%
+	for(int i=0; i<array.size(); i++){
+		anaunseo = array.get(i);
+%>
+	<tr>
+		<td><%= anaunseo.getAnaunseoId() %></td>
+		<td><%= anaunseo.getAnaunseoName() %></td>
+		<td><%= anaunseo.getAnaunseoAge() %></td>
+	</tr>
+<%
+	}
+%>
 </table>
