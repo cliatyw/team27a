@@ -13,9 +13,9 @@ public class ActorDao {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<Actor> arrayActor = null;
-		Actor actor = null;
+		ResultSet rs=null;
+		ArrayList<Actor> arrayActor=null;
+		
 				
 		try {
 			
@@ -45,7 +45,7 @@ public class ActorDao {
 				String actorAge=rs.getString("actor_age");
 			
 				//actor참조변수에 id,name,age 값을 set메소드를 사용해 담는다
-				actor = new Actor();
+				Actor actor = new Actor();
 				actor.setActorId(actorId);
 				actor.setActorName(actorName);
 				actor.setActorAge(actorAge);
