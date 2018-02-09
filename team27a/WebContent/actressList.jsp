@@ -15,6 +15,8 @@
 		ArrayList<Actress> arrayActress = actressDao.selectActressList();
 	%>
 	<body>
+		<h1>가수 목록</h1>
+		<a href="http://naver.com">등록</a>
 		<table border="1">
 			<tr>
 				<td>여배우 순서</td>
@@ -33,6 +35,7 @@
 				}
 			%>
 		</table>
+		<a href="index.jsp">홈으로</a>
 	</body>
 </html>
 

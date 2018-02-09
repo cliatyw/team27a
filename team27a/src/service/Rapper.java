@@ -5,6 +5,7 @@ public class Rapper {
 	private int rapperId;
 	private String rapperName;
 	private int rapperAge;
+	
 	public int getRapperId() {
 		return rapperId;
 	}
@@ -23,4 +24,10 @@ public class Rapper {
 	public void setRapperAge(int rapperAge) {
 		this.rapperAge = rapperAge;
 	}
+	@Override
+	public String toString() {
+		return "Rapper [rapperId=" + rapperId + ", rapperName=" + rapperName + ", rapperAge=" + rapperAge + "]";
+	}
+	
+	
 }

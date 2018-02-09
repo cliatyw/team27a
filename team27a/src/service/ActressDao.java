@@ -65,16 +65,16 @@ public class ActressDao {
 				list.add(actress);
 			}
 			// 단위테스트
-			System.out.println(list.size()+"7");
-		} catch(ClassNotFoundException e) { // Class.forName()
-			e.printStackTrace();
-		} catch(SQLException e) { // JDBC
-			e.printStackTrace();
-		} finally {
-			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
-			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
-			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+				System.out.println(list.size()+"7");
+			} catch(ClassNotFoundException e) { // Class.forName()
+				e.printStackTrace();
+			} catch(SQLException e) { // JDBC
+				e.printStackTrace();
+			} finally {
+				if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+				if (statement != null) try { statement.close(); } catch(SQLException ex) {}
+				if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+			}
+			return list;
 		}
-		return list;
-	}
 }

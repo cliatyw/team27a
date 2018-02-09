@@ -1,39 +1,42 @@
-<!-- [김기성] -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%@ page import = "service.Rapper" %>
-<%@ page import = "java.util.ArrayList" %>
-<%@ page import = "service.RapperDao" %>
+<!-- [백지훈] -->
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%@ page import="service.RapperDao"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="service.Rapper"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+	<head>
+	
+	</head>
 	<%
 		request.setCharacterEncoding("euc-kr");
-	
-		ArrayList<Rapper> array = null;
 		RapperDao rapperDao = new RapperDao();
+		ArrayList<Rapper> arrayRapper = rapperDao.selectRapperList();
 	%>
-	<table>
-		<tr>
-			<th>id</th>
-			<th>name</th>
-			<th>age</th>
-		</tr>
-	<%
-		array = rapperDao.selectRapperList();
-		for(Rapper rapper : array){
-	%>
-		<tr>
-			<td><%= rapper.getRapperId() %></td>
-			<td><%= rapper.getRapperName() %></td>
-			<td><%= rapper.getRapperAge() %></td>
-		</tr>
-	<%
-		}
-	%>
-	</table>
-</body>
+	<body>
+		<h1>래퍼 목록</h1>
+		<a href="http://naver.com">등록</a>
+		<table border="1">
+			<tr>
+				<td>래퍼 순서</td>
+				<td>래퍼 이름</td>
+				<td>래퍼 나이</td>
+			</tr>
+			<%
+				for (Rapper rapper : arrayRapper) {
+			%>
+			<tr>
+				<td><%=rapper.getRapperId()%></td>
+				<td><%=rapper.getRapperName()%></td>
+				<td><%=rapper.getRapperAge()%></td>
+			</tr>
+			<%
+				}
+			%>
+		</table>
+		<a href="index.jsp">홈으로</a>
+	</body>
 </html>
+
+ 

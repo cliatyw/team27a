@@ -1,63 +1,80 @@
-/*[김기성]*/
+/*[백지훈]*/
 package service;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Connection;
 
 public class RapperDao {
-	public ArrayList<Rapper> selectRapperList(){
-		Connection connection = null; //변수이름을 설정한다
-		PreparedStatement preparedStatement = null;
+	
+	/*
+	 * default생성자 이긴 한데, public안해주면 
+	 * not visible상태가 되기 때문에 호출 할 수 없다. 
+	 * 따라서 public만 붙여서 선언해준다.
+	 */
+	public RapperDao() {}
+	
+	
+	public int insertRapper(Rapper rapper) {
+		//단위테스트
+		System.out.println(rapper);
+		return 0;
+	}
+	
+	
+	/*
+	 * select 한 후 리턴값으로 Rapper.class의 배열이나 List 받아야 한다.
+	 * 배열이나, ArrayList, HashMap을 사용할 수 있다.
+	 * ArrayList를 지금 사용해보고, HashMap도 테스트 해볼것.
+	 */
+	public ArrayList<Rapper> selectRapperList() {
+		//기본적인 객체참조변수 선언.
+		ArrayList<Rapper> list = new ArrayList<Rapper>();
+		
+		// finally절에서 colose....
+		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		ArrayList<Rapper> array = new ArrayList<Rapper>();
+		Connection connection = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver"); //드라이버 로딩
-			
+			//db접속을 위한 id,pw,주소 설정 코드인데, root관리자로 접속하라는 코드여서, 새로운 user를 추가하는것을 고려해야하지않을까?
+			Class.forName("com.mysql.jdbc.Driver");
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
+			// 별명
+			String sql = "SELECT rapper_id AS rapperId, rapper_name AS rapperName,rapper_age AS rapperAge FROM rapper";
+			//db 접속을 받는 부분. 커넥션을 받는다!
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			//select 시에는 executeQuery를 실행하여, ResultSet을 리턴값으로 받는다.
+			//update, delete, insert같은 경우는 executeUpdate다~
+			resultSet = statement.executeQuery();
 			
-			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass); //db연결
-			
-			preparedStatement = connection.prepareStatement("select rapper_id, rapper_name, rapper_age from rapper"); //rapper 테이블에 컬럼3개를 select한다
-			resultSet = preparedStatement.executeQuery(); //쿼리 실행 준비 및 실행
-			
-			while(resultSet.next()) { //쿼리에 내용 있으면 배열에 대입
+			//여기에서 객체를 생성하는 이유는 SQLException , ClassNotFoundException 같은 예외처리부분에서 에러가 날경우에는 객체생성 안하기 위해~
+			while(resultSet.next()){
 				Rapper rapper = new Rapper();
-				rapper.setRapperId(resultSet.getInt("rapper_id"));
-				rapper.setRapperName(resultSet.getString("rapper_name"));
-				rapper.setRapperAge(resultSet.getInt("rapper_age"));
-				array.add(rapper);
+	
+				//내가 INT형 해놔서 Integer클래스의 parseInt메서드를
+				rapper.setRapperId(resultSet.getInt("rapperId"));  
+				rapper.setRapperName(resultSet.getString("rapperName"));
+				rapper.setRapperAge(resultSet.getInt("rapperAge"));  
+				list.add(rapper);
 			}
-			
-		} catch (ClassNotFoundException e) { //예외 처리
+			// 단위테스트
+			System.out.println(list.size()+"7");
+		} catch(ClassNotFoundException e) { // Class.forName()
 			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch(SQLException e) { // JDBC
 			e.printStackTrace();
+		} finally {
+			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
 		}
-		finally{ //에러가 발생해도 메모리누수를 방지하기 위해 종료한다.
-			try {
-				resultSet.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			try {
-				preparedStatement.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return array; //배열 리턴
-		
+		return list;
 	}
 }
