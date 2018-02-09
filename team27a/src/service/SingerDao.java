@@ -1,4 +1,4 @@
-/*{최상욱}*/
+/*[최상욱]*/
 package service;
 
 import java.sql.DriverManager;
@@ -9,14 +9,22 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 public class SingerDao {
+	public int insertActress(Singer singer) {
+		//단위테스트
+		System.out.println(singer);
+		return 0;
+	}
 	
 	
 	public ArrayList<Singer> selectSingerList(){
 		//객체참조변수 선언.
-		PreparedStatement pstmt = null;
+		ArrayList<Singer> list = new ArrayList<Singer>();
+		
+		// finally절에서 colose....
+		PreparedStatement statement = null;
 		ResultSet rs = null;
-		Connection conn = null;
-		ArrayList<Singer> arraySinger = new ArrayList<Singer>();
+		Connection connection = null;
+		
 		
 		
 		try {
@@ -25,20 +33,24 @@ public class SingerDao {
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-			conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
-			
+			String sql = "SELECT singer_id AS singerId, singer_name AS singerName,singer_age AS singerAge FROM singer ORDER BY singer_id";
+			//db 접속을 받는 부분. 커넥션을 받는다!
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);			
 			//쿼리 문장 실행.
-			pstmt = conn.prepareStatement("select * from singer order by singer_id");
-			rs = pstmt.executeQuery();
+			statement = connection.prepareStatement(sql);
+			////select 시에는 executeQuery를 실행하여, ResultSet을 리턴값으로 받는다.
+			rs = statement.executeQuery();
 			
 			while (rs.next()) {//그 다음 값이있을때까지 실행
 				//singer의 참조변수에 db값을 가져온다.
 				Singer singer = new Singer();
-				singer.setSingerId(rs.getInt("singer_id"));
-				singer.setSingerName(rs.getString("singer_name"));
-				singer.setSingerAge(rs.getInt("singer_age"));
-				arraySinger.add(singer);
+				singer.setSingerId(rs.getInt("singerId"));
+				singer.setSingerName(rs.getString("singerName"));
+				singer.setSingerAge(rs.getInt("singerAge"));
+				list.add(singer);
 			}
+			// 단위테스트
+			System.out.println(list.size()+"<---listsize");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -46,10 +58,10 @@ public class SingerDao {
 			e.printStackTrace();
 		} finally {
 			if (rs != null)	try {rs.close();} catch (SQLException ex) {}
-			if (pstmt != null)try {pstmt.close();	} catch (SQLException ex) {}
-			if (conn != null)try {conn.close();	} catch (SQLException ex) {}
+			if (statement != null)try {statement.close();	} catch (SQLException ex) {}
+			if (connection != null)try {connection.close();	} catch (SQLException ex) {}
 		}
-		return arraySinger;
+		return list;
 	}
 	
 }

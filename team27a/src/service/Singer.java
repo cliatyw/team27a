@@ -1,4 +1,4 @@
-/*{최상욱}*/
+/*[최상욱]*/
 package service;
 public class Singer {
 	private int singerId;
@@ -23,6 +23,10 @@ public class Singer {
 	}
 	public void setSingerAge(int singerAge) {
 		this.singerAge = singerAge;
+	}
+	@Override
+	public String toString() {
+		return "Singer [singerId=" + singerId + ", singerName=" + singerName + ", singerAge=" + singerAge + "]";
 	}
 	
 	
