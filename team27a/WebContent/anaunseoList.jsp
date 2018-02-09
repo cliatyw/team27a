@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title></title>
+<title>anaunseoList.jsp</title>
 </head>
 <body>
 	<h1>아나운서 목록</h1>
@@ -23,9 +23,9 @@
 	<table border="1">
 		<thead>
 			<tr>
-				<th>id</th>
-				<th>name</th>
-				<th>age</th>
+				<th>아나운서 순서</th>
+				<th>아나운서 이름</th>
+				<th>아나운서 나이</th>
 			</tr>
 		</thead>
 		<tbody>

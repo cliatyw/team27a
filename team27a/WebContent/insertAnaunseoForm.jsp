@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>insertAnaunseoForm.jsp</title>
 </head>
 <body>
 	<h1>등록 화면</h1>
