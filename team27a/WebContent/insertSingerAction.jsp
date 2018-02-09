@@ -14,5 +14,6 @@
 
 	SingerDao singerDao = new SingerDao();
 	singerDao.insertSinger(singer);
+
 	response.sendRedirect(request.getContextPath() + "/singerList.jsp");
 %>

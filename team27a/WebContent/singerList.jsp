@@ -11,16 +11,22 @@
 	</head>
 	<body>
 		<h1>가수 목록</h1>
-		<a href="insertSingerForm.jsp">등록</a>
+		<a href="<%= request.getContextPath() %>/insertSingerForm.jsp">등록</a>
+		<%
+			request.setCharacterEncoding("euc-kr");
+			SingerDao singerdao = new SingerDao();
+			ArrayList<Singer> list =singerdao.selectSingerList();
+		%>
 		<table border="1">
-			<tr>
-				<td>가수 순서</td>
-				<td>가수 이름</td>
-				<td>가수 나이</td>
-			</tr>		
-			<%
-				SingerDao singerdao = new SingerDao();
-				ArrayList<Singer> list =singerdao.selectSingerList();
+			<thead>
+				<tr>
+					<th>가수 순서</th>
+					<th>가수 이름</th>
+					<th>가수 나이</th>
+				</tr>
+			</thead>	
+			<tbody>			
+			<%				
 				for(Singer singer : list){			
 			%>
 					<tr>
@@ -30,7 +36,9 @@
 					</tr>
 			<%		
 				}
-			%>			
+			%>	
+			</tbody>
+				
 		</table>
 		<a href="index.jsp">홈으로</a>
 	</body>
