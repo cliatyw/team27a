@@ -8,30 +8,36 @@
 </head>
 <body>
 	<head>team27a</head>
-	<table>
+	<table border="1" style="width:50%">
 		<tr>
-			<td>팀원</td>
-			<td>역활</td>
+			<th>팀원</th>
+			<th>역활</th>
+			<th>사진</th>
 		</tr>
 		<tr>
 			<td>김도희</td>
 			<td>actor</td>
+			<td><img src ="김도희.jpg" style="width: 150px; height: auto;"></td>
 		</tr>
 		<tr>
 			<td>백지훈</td>
 			<td>actress</td>
+			<td><img src ="백지훈.jpg" style="width: 150px; height: auto;"></td>
 		</tr>
 		<tr>
 			<td>최상욱</td>
 			<td>singer</td>
+			<td><img src ="최상욱.png" style="width: 150px; height: auto;"></td>
 		</tr>
 		<tr>
 			<td>진경수</td>
 			<td>comedian</td>
+			<td><img src ="진경수.png" style="width: 150px; height: auto;"></td>
 		</tr>
 		<tr>
 			<td>김기성</td>
 			<td>rapper, anaunseo</td>
+			<td><img src ="김기성.jpg" style="width: 150px; height: auto;"></td>
 		</tr>
 	</table>
 	<ul>
