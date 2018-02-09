@@ -1,3 +1,4 @@
+/*{ÃÖ»ó¿í}*/
 package service;
 public class Singer {
 	private int singerId;
