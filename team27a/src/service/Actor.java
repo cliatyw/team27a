@@ -5,6 +5,7 @@ public class Actor {
 	private String actorId;
 	private String actorName;
 	private String actorAge;
+	
 	public String getActorId() {
 		return actorId;
 	}
@@ -23,9 +24,6 @@ public class Actor {
 	public void setActorAge(String actorAge) {
 		this.actorAge = actorAge;
 	}
-	
-	
-	
 	
 	
 }
