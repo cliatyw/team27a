@@ -10,6 +10,8 @@
 	<title>Insert title here</title>
 	</head>
 	<body>
+		<h1>가수 목록</h1>
+		<a href="http://naver.com">등록</a>
 		<table border="1">
 			<tr>
 				<td>가수 순서</td>
@@ -20,17 +22,17 @@
 			<%
 				SingerDao singerdao = new SingerDao();
 				ArrayList<Singer> list =singerdao.selectSingerList();
-				for(Singer singer : list){
-			
+				for(Singer singer : list){			
 			%>
 					<tr>
 						<td><%=singer.getSingerId()%></td>
 						<td><%=singer.getSingerName()%></td>
-						<td><%= singer.getSingerAge()%></td>
+						<td><%=singer.getSingerAge()%></td>
 					</tr>
 			<%		
 				}
-			%>
+			%>			
 		</table>
+		<a href="index.jsp">홈으로</a>
 	</body>
 </html>

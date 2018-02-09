@@ -9,13 +9,6 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 public class SingerDao {
-	public int insertActress(Singer singer) {
-		//단위테스트
-		System.out.println(singer);
-		return 0;
-	}
-	
-	
 	public ArrayList<Singer> selectSingerList(){
 		//객체참조변수 선언.
 		ArrayList<Singer> list = new ArrayList<Singer>();
@@ -64,4 +57,7 @@ public class SingerDao {
 		return list;
 	}
 	
+	public void insertSinger(Singer singer) {
+
+	}
 }
