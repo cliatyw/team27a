@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- [김기성] -->
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>등록 화면</h1>
-	<form action="<%= request.getContextPath() %>/insertAnaunseoAction.jsp">
+	<form action="<%= request.getContextPath() %>/insertAnaunseoAction.jsp" method="post">
 		<table border="1">
 			<tr>
 				<td>아나운서 이름</td>

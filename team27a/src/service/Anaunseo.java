@@ -2,31 +2,31 @@
 package service;
 
 public class Anaunseo {
-	private int AnaunseoId;
-	private String AnaunseoName;
-	private int AnaunseoAge;
+	private int anaunseoId;
+	private String anaunseoName;
+	private int anaunseoAge;
 	public int getAnaunseoId() {
-		return AnaunseoId;
+		return anaunseoId;
 	}
 	public void setAnaunseoId(int anaunseoId) {
-		AnaunseoId = anaunseoId;
+		this.anaunseoId = anaunseoId;
 	}
 	public String getAnaunseoName() {
-		return AnaunseoName;
+		return anaunseoName;
 	}
 	public void setAnaunseoName(String anaunseoName) {
-		AnaunseoName = anaunseoName;
+		this.anaunseoName = anaunseoName;
 	}
 	public int getAnaunseoAge() {
-		return AnaunseoAge;
+		return anaunseoAge;
 	}
 	public void setAnaunseoAge(int anaunseoAge) {
-		AnaunseoAge = anaunseoAge;
+		this.anaunseoAge = anaunseoAge;
 	}
-	//입력받은 값이 잘 들어왔나 확인하기 위한 방법 등 에 사용하기 위해 오버라이딩(toString)을 하였다.(단위테스트)
 	@Override
 	public String toString() {
-		return "Anaunseo [AnaunseoId=" + AnaunseoId + ", AnaunseoName=" + AnaunseoName + ", AnaunseoAge=" + AnaunseoAge
+		return "Anaunseo [anaunseoId=" + anaunseoId + ", anaunseoName=" + anaunseoName + ", anaunseoAge=" + anaunseoAge
 				+ "]";
 	}
+	
 }
