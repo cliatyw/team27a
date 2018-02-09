@@ -9,15 +9,15 @@
 </head>
 <body>
 	<h1>등록 화면</h1>
-	<form action="<%= request.getContextPath() %>/insertActressAction.jsp">
+	<form action="<%= request.getContextPath() %>/insertRapperAction.jsp">
 		<table border="1">
 			<tr>
-				<td>여배우 이름</td>
-				<td><input type="text" name="actressName"></td>
+				<td>래퍼 이름</td>
+				<td><input type="text" name="rapperName"></td>
 			</tr>
 			<tr>
-				<td>여배우 나이</td>
-				<td><input type="text" name="actressAge"></td>
+				<td>래퍼 나이</td>
+				<td><input type="text" name="rapperAge"></td>
 			</tr>
 		</table>
 		<input type="submit" value="등록">
