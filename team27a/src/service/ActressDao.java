@@ -59,9 +59,9 @@ public class ActressDao {
 				Actress actress = new Actress();
 	
 				//내가 INT형 해놔서 Integer클래스의 parseInt메서드를
-				actress.setActressId(resultSet.getInt("actressId"));
+				actress.setActressId(resultSet.getInt("actressId"));  
 				actress.setActressName(resultSet.getString("actressName"));
-				actress.setActressAge(resultSet.getInt("actressAge"));
+				actress.setActressAge(resultSet.getInt("actressAge"));  
 				list.add(actress);
 			}
 			// 단위테스트
