@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <%
 request.setCharacterEncoding("euc-kr");
-ComedianDao cd = new ComedianDao();
-ArrayList<Comedian> arrayComedian = cd.selectComedianList();
+ComedianDao comedianDao = new ComedianDao();
+ArrayList<Comedian> arrayComedian = comedianDao.selectComedianList();
 %>
 <table border="1">
 	<tr>
@@ -15,8 +15,7 @@ ArrayList<Comedian> arrayComedian = cd.selectComedianList();
 		<td>코메디언 나이</td>
 	</tr>
 	<%
-	for(int i=0 ; i < arrayComedian.size() ; i++){
-		Comedian comedian = arrayComedian.get(i);
+	for(Comedian comedian : arrayComedian){
 		%>
 		<tr>
 			<td><%= comedian.getComedianId()%></td>
