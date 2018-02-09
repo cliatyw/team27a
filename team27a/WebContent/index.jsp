@@ -30,27 +30,27 @@
 			<tr>
 				<td>±èµµÈñ</td>
 				<td>actor</td>
-				<td><img src="±èµµÈñ.jpg" style="width: 150px; height: auto;"></td>
+				<td><img src="kdh.jpg" style="width: 150px; height: auto;"></td>
 			</tr>
 			<tr>
 				<td>¹éÁöÈÆ</td>
 				<td>actress</td>
-				<td><img src="¹éÁöÈÆ.jpg" style="width: 150px; height: auto;"></td>
+				<td><img src="bjh.jpg" style="width: 150px; height: auto;"></td>
 			</tr>
 			<tr>
 				<td>ÃÖ»ó¿í</td>
 				<td>singer</td>
-				<td><img src="ÃÖ»ó¿í.png" style="width: 150px; height: auto;"></td>
+				<td><img src="csu.png" style="width: 150px; height: auto;"></td>
 			</tr>
 			<tr>
 				<td>Áø°æ¼ö</td>
 				<td>comedian</td>
-				<td><img src="Áø°æ¼ö.png" style="width: 150px; height: auto;"></td>
+				<td><img src="jks.png" style="width: 150px; height: auto;"></td>
 			</tr>
 			<tr>
 				<td>±è±â¼º</td>
 				<td>rapper, anaunseo</td>
-				<td><img src="±è±â¼º.jpg" style="width: 150px; height: auto;"></td>
+				<td><img src="kks.jpg" style="width: 150px; height: auto;"></td>
 			</tr>
 		</table>
 	</section>
