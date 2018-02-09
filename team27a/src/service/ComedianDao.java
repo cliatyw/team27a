@@ -1,3 +1,4 @@
+/*[진경수]*/
 package service;
 
 import java.sql.DriverManager;
@@ -36,8 +37,9 @@ public class ComedianDao {
 			
 			//여기에서 객체를 생성하는 이유는 SQLException , ClassNotFoundException 같은 예외처리부분에서 에러가 날경우에는 객체생성 안하기 위해~
 			arrayComedian = new ArrayList<Comedian>();
+			Comedian comedian;
 			while(resultSet.next()){
-				Comedian comedian = new Comedian();
+				comedian = new Comedian();
 				//여기에서 오류났엇는데, DB테이블안에 있는 컬럼명은 단어와 단어 사이 '_'를 쓴다는것을 주의할것!! 우리 코드는 두번째 단어부터 대문자다!!
 				//내가 INT형 해놔서 getInt를 씀!! 그리고 따로 변수로 저장해서 다른데 사용하지 않기때문에 바로 데이터를 세팅해버린다.
 				comedian.setComedianId(resultSet.getInt("comedian_id"));
