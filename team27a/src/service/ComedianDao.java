@@ -9,43 +9,57 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 public class ComedianDao {
-	//default생성자 이긴 한데, public안해주면 not visible상태가 되기 때문에 호출 할 수 없다. 따라서 public만 붙여서 선언해준다.
+	/*
+	default생성자 이긴 한데, 
+	public안해주면 not visible상태가 되기 때문에 호출 할 수 없다. 
+	따라서 public만 붙여서 선언해준다.
+	*/
+	
 	public ComedianDao() {}
 	
-	//select 한 후 리턴값으로 Comedian.class를 받아야 한다. 배열이나, ArrayList, HashMap을 사용할 수 있다.
-	//ArrayList를 지금 사용해보고, HashMap도 테스트 해볼것.
+	/*select 한 후 데이터타입이 Comedian인 list를 리턴해야 한다.*/
 	public ArrayList<Comedian> selectComedianList() {
-		//기본적인 객체참조변수 선언.
-		ArrayList<Comedian> arrayComedian = null;
-		PreparedStatement preparedStatement = null;
+		/*
+		기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을 하게되면
+		지역변수로 선언이되어서 finally절에서 colose를 하지 못하기때문에
+		try절 밖에서 선언을 해준다.
+		*/
+		ArrayList<Comedian> list = new ArrayList<Comedian>();
+		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		Connection connection = null;
 		
 		try {
-			//db접속을 위한 id,pw,주소 설정 코드인데, root관리자로 접속하라는 코드여서, 새로운 user를 추가하는것을 고려해야하지않을까?
+			/*db접속을 위한 id,pw,주소 설정 코드이며, String은 무조건 변수형태로 사용!*/
 			Class.forName("com.mysql.jdbc.Driver");
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-	
-			//db 접속을 받는 부분. 커넥션을 받는다!
-			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
-			preparedStatement = connection.prepareStatement("select comedian_id,comedian_name,comedian_age from comedian");
-			//select 시에는 executeQuery를 실행하여, ResultSet을 리턴값으로 받는다.
-			//update, delete, insert같은 경우는 executeUpdate다~
-			resultSet = preparedStatement.executeQuery();
 			
-			//여기에서 객체를 생성하는 이유는 SQLException , ClassNotFoundException 같은 예외처리부분에서 에러가 날경우에는 객체생성 안하기 위해~
-			arrayComedian = new ArrayList<Comedian>();
+			/*쿼리는 데이터와 테이블을 제외한 부분에서 대분자를 사용해주면 더욱 가독성이 뛰어나다.*/
+			String sql = "SELECT comedian_id AS comedianId, comedian_name AS comedianName, comedian_age AS comedianAge FROM comedian";
+			
+			/*db 접속을 받는 부분. 커넥션을 받는다!*/
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			
+			/*
+			select 시에는 executeQuery를 실행하여, ResultSet을 리턴값으로 받는다.
+			update, delete, insert같은 경우는 executeUpdate메서드를 사용하여,
+			몇개의 행이 삭제되거나 추가되거나 업데이트 되었는지 확인 할 수 있다.
+			*/
+			resultSet = statement.executeQuery();
 			Comedian comedian;
 			while(resultSet.next()){
 				comedian = new Comedian();
-				//여기에서 오류났엇는데, DB테이블안에 있는 컬럼명은 단어와 단어 사이 '_'를 쓴다는것을 주의할것!! 우리 코드는 두번째 단어부터 대문자다!!
-				//내가 INT형 해놔서 getInt를 씀!! 그리고 따로 변수로 저장해서 다른데 사용하지 않기때문에 바로 데이터를 세팅해버린다.
-				comedian.setComedianId(resultSet.getInt("comedian_id"));
-				comedian.setComedianName(resultSet.getString("comedian_name"));
-				comedian.setComedianAge(resultSet.getInt("comedian_age"));
-				arrayComedian.add(comedian);
+				/*
+				select문에서 앨리아스를 일치시켜줬기 때문에, 이름을 똑같이 사용할수있다.
+				나중에는 일치시켜야만 코드를 줄일 수 있는 툴을 배울 것 이기때문에 필수!!
+				*/
+				comedian.setComedianId(resultSet.getInt("comedianId"));
+				comedian.setComedianName(resultSet.getString("comedianName"));
+				comedian.setComedianAge(resultSet.getInt("comedianAge"));
+				list.add(comedian);
 			}
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
@@ -53,9 +67,9 @@ public class ComedianDao {
 			e.printStackTrace();
 		} finally {
 			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
-			if (preparedStatement != null) try { preparedStatement.close(); } catch(SQLException ex) {}
+			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
 			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
 		}
-		return arrayComedian;
+		return list;
 	}
 }

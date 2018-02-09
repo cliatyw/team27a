@@ -46,7 +46,7 @@ public class ActressDao {
 			String dbUser = "root";
 			String dbPass = "java0000";
 			// 별명
-			String sql = "SELECT actress_id as actressId, actress_name as actressName,actress_age as actressAge FROM actress";
+			String sql = "SELECT actress_id AS actressId, actress_name AS actressName,actress_age AS actressAge FROM actress";
 			//db 접속을 받는 부분. 커넥션을 받는다!
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			statement = connection.prepareStatement(sql);
@@ -57,15 +57,11 @@ public class ActressDao {
 			//여기에서 객체를 생성하는 이유는 SQLException , ClassNotFoundException 같은 예외처리부분에서 에러가 날경우에는 객체생성 안하기 위해~
 			while(resultSet.next()){
 				Actress actress = new Actress();
-				//여기에서 오류났엇는데, DB테이블안에 있는 컬럼명은 단어와 단어 사이 '_'를 쓴다는것을 주의할것!! 우리 코드는 두번째 단어부터 대문자다!!
-				int actressId = resultSet.getInt("actressId");
-				String actressName = resultSet.getString("actressName");
-				int actressAge = resultSet.getInt("actressAge");
 	
 				//내가 INT형 해놔서 Integer클래스의 parseInt메서드를
-				actress.setActressId(actressId);
-				actress.setActressName(actressName);
-				actress.setActressAge(actressAge);
+				actress.setActressId(resultSet.getInt("actressId"));
+				actress.setActressName(resultSet.getString("actressName"));
+				actress.setActressAge(resultSet.getInt("actressAge"));
 				list.add(actress);
 			}
 			// 단위테스트
