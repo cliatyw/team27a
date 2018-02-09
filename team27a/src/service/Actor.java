@@ -1,16 +1,16 @@
-/*±èµµÈñ*/
+/*[±èµµÈñ]*/
 package service;
 
 public class Actor {
 
-	private String actorId;
+	private int actorId;
 	private String actorName;
-	private String actorAge;
+	private int actorAge;
 	
-	public String getActorId() {
+	public int getActorId() {
 		return actorId;
 	}
-	public void setActorId(String actorId) {
+	public void setActorId(int actorId) {
 		this.actorId = actorId;
 	}
 	public String getActorName() {
@@ -19,10 +19,10 @@ public class Actor {
 	public void setActorName(String actorName) {
 		this.actorName = actorName;
 	}
-	public String getActorAge() {
+	public int getActorAge() {
 		return actorAge;
 	}
-	public void setActorAge(String actorAge) {
+	public void setActorAge(int actorAge) {
 		this.actorAge = actorAge;
 	}
 	@Override

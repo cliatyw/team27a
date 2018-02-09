@@ -1,4 +1,4 @@
-<!-- ±èµµÈñ -->
+<!-- [±èµµÈñ] -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import = "service.Actor" %>
 <%@ page import = "service.ActorDao" %>
@@ -18,7 +18,7 @@
 		</tr>
 		<%
 			ActorDao actordao = new ActorDao();
-			// list?
+			// list´Â actorÀÇ id,name,age¸¦ ÀÇ¹ÌÇÔ
 			ArrayList<Actor> list = actordao.selectActorList();
 		
 			for(Actor actor : list) { // for()
