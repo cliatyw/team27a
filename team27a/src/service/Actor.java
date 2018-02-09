@@ -25,6 +25,8 @@ public class Actor {
 	public void setActorAge(String actorAge) {
 		this.actorAge = actorAge;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Actor [actorId=" + actorId + ", actorName=" + actorName + ", actorAge=" + actorAge + "]";
+	}
 }
