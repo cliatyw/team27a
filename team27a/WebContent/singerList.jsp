@@ -11,14 +11,13 @@
 	</head>
 	<body>
 		<h1>가수 목록</h1>
-		<a href="http://naver.com">등록</a>
+		<a href="insertSingerForm.jsp">등록</a>
 		<table border="1">
 			<tr>
 				<td>가수 순서</td>
 				<td>가수 이름</td>
 				<td>가수 나이</td>
-			</tr>
-		
+			</tr>		
 			<%
 				SingerDao singerdao = new SingerDao();
 				ArrayList<Singer> list =singerdao.selectSingerList();

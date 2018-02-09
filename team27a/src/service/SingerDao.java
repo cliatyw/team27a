@@ -58,6 +58,39 @@ public class SingerDao {
 	}
 	
 	public void insertSinger(Singer singer) {
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		Connection connection = null;
+		
+		try {
+			
+			//드라이버 로딩 후 db접속을 위해 포트번호, db명 아이디 비밀번호 ip값을 적어준다.
+			Class.forName("com.mysql.jdbc.Driver");
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "INSERT INTO singer VALUES (?, ?, ?)";			
+			//db 접속을 받는 부분. 커넥션을 받는다!
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);			
+			//쿼리 문장 실행.
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, singer.getSingerId());
+			statement.setString(2, singer.getSingerName());
+			statement.setInt(3, singer.getSingerAge());
+			System.out.println(statement);
+			////select 시에는 executeQuery를 실행하여, ResultSet을 리턴값으로 받는다.
+			statement.executeUpdate();
+			
 
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)	try {rs.close();} catch (SQLException ex) {}
+			if (statement != null)try {statement.close();	} catch (SQLException ex) {}
+			if (connection != null)try {connection.close();	} catch (SQLException ex) {}
+		}
+		
 	}
 }
