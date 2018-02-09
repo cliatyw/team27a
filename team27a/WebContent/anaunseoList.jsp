@@ -8,11 +8,8 @@
 	request.setCharacterEncoding("euc-kr");
 
 	AnaunseoDao anaunseoDao = new AnaunseoDao();
-	Anaunseo anaunseo = new Anaunseo();
-	ArrayList<Anaunseo> array = new ArrayList<Anaunseo>();
-	
-	array = anaunseoDao.selectAnaunseoList(); //매서드 실행 후 리턴값을 배열에 대입
-
+	ArrayList<Anaunseo> list = anaunseoDao.selectAnaunseoList();
+	//매서드 실행 후 리턴값을 배열에 대입
 %>
 <table>
 	<tr>
@@ -20,16 +17,16 @@
 		<th>name</th>
 		<th>age</th>
 	</tr>
-<%
-	for(int i=0; i<array.size(); i++){
-		anaunseo = array.get(i); //
-%>
-	<tr>
-		<td><%= anaunseo.getAnaunseoId() %></td>
-		<td><%= anaunseo.getAnaunseoName() %></td>
-		<td><%= anaunseo.getAnaunseoAge() %></td>
-	</tr>
-<%
-	}
-%>
+	<!-- jsp에서 맞추기는 힘들지만 for문 등을 사용할때 테이블 안에 있으면 들여 놓는것이 좋다. -->
+	<%
+		for(Anaunseo anaunseo : list){
+	%>
+			<tr>
+				<td><%= anaunseo.getAnaunseoId() %></td>
+				<td><%= anaunseo.getAnaunseoName() %></td>
+				<td><%= anaunseo.getAnaunseoAge() %></td>
+			</tr>
+	<%
+		}
+	%>
 </table>

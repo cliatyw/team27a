@@ -18,7 +18,6 @@
 	</tr>
 <%
 	array = rapperDao.selectRapperList();
-	System.out.println(array);
 	for(Rapper rapper : array){
 %>
 	<tr>
