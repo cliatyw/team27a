@@ -1,3 +1,4 @@
+/*[±è±â¼º]*/
 package service;
 
 public class Rapper {
@@ -22,6 +23,4 @@ public class Rapper {
 	public void setRapperAge(int rapperAge) {
 		this.rapperAge = rapperAge;
 	}
-	
-	
 }

@@ -1,3 +1,4 @@
+<!-- [김기성] -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import = "service.AnaunseoDao" %>
 <%@ page import = "service.Anaunseo" %>
@@ -10,19 +11,18 @@
 	Anaunseo anaunseo = new Anaunseo();
 	ArrayList<Anaunseo> array = new ArrayList<Anaunseo>();
 	
-	array = anaunseoDao.selectAnaunseoList();
-	
-	
+	array = anaunseoDao.selectAnaunseoList(); //매서드 실행 후 리턴값을 배열에 대입
+
 %>
 <table>
 	<tr>
-		<td>id</td>
-		<td>name</td>
-		<td>age</td>
+		<th>id</th>
+		<th>name</th>
+		<th>age</th>
 	</tr>
 <%
 	for(int i=0; i<array.size(); i++){
-		anaunseo = array.get(i);
+		anaunseo = array.get(i); //
 %>
 	<tr>
 		<td><%= anaunseo.getAnaunseoId() %></td>
