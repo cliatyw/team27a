@@ -14,18 +14,116 @@ public class ComedianDao {
 	 * 따라서 public만 붙여서 선언해준다.
 	 * */
 	public ComedianDao() {}
-	
-	
-	
-	
-	public void updateComedian(Comedian comedian) {
+
+	/*업데이트를 하기 위해 select 해서 회원정보 불러오게 하는 메서드*/
+	public Comedian selectForUpdateComedian(int comedianId) {
+		Comedian comedian = new Comedian();
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Connection connection = null;
 		
-		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			/*어차피 하나의 행만 출력되기 때문에, order by 절은 사용하지 않았다.*/
+			String sql = "SELECT comedian_id AS comedianId, comedian_name AS comedianName, comedian AS comedianAge FROM comedian where comedianId = ?";
+			
+			connection = DriverManager.getConnection(jdbcDriver,dbUser,dbPass);
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1,comedianId);
+			resultSet = statement.executeQuery(sql);
+			
+			/*어차피 하나의 행만 출력되어서 while문을 사용하지 않았다.*/
+			resultSet.next();
+			comedian.setComedianId(comedianId);
+			comedian.setComedianName(resultSet.getString("comedianName"));
+			comedian.setComedianAge(resultSet.getInt("comedianAge"));
+			
+			/*여기까지 제대로 진행되었는지, 데이터가 제대로 들어갔는지 확인!*/
+			System.out.println(comedian.toString());
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+		return comedian;
 	}
 	
-	public void deleteComedian(Comedian comedian) {
+	public void updateComedian(Comedian comedian) {
+		/*기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을 하게되면지역변수로 
+		 * 선언이되어서 finally절에서 colose를 하지 못하기때문에try절 밖에서 선언을 해준다.
+		 * */
+		PreparedStatement statement = null;
+		Connection connection = null;
 		
+		try {
+			/*db접속을 위한 id,pw,주소 설정 코드이며, String은 무조건 변수형태로 사용!*/
+			Class.forName("com.mysql.jdbc.Driver");
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			
+			/*특정행만 업데이트를 하기위해 comedian_id를 조건절로 주었다.*/
+			String sql = "UPDATE comedian SET comedian_name = ?, comedian_age = ? where comedian_id = ?";
+			/*db 접속을 받는 부분. 커넥션을 받는다!*/
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			/*데이터 넣기!*/
+			statement.setString(1, comedian.getComedianName());
+			statement.setInt(2, comedian.getComedianAge());
+			statement.setInt(3, comedian.getComedianId());
+			/*쿼리 실행*/
+			statement.executeUpdate();
+			
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+	}
+	
+	public void deleteComedian(int comedianId) {
+		/*기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을 하게되면지역변수로 
+		 * 선언이되어서 finally절에서 colose를 하지 못하기때문에try절 밖에서 선언을 해준다.
+		 * */
+		PreparedStatement statement = null;
+		Connection connection = null;
 		
+		try {
+			/*db접속을 위한 id,pw,주소 설정 코드이며, String은 무조건 변수형태로 사용!*/
+			Class.forName("com.mysql.jdbc.Driver");
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			
+			/*쿼리는 데이터와 테이블을 제외한 부분에서 대분자를 사용해주면 더욱 가독성이 뛰어나다.*/
+			String sql = "DELETE FROM comedian WHERE comedian_id = ?";
+			/*db 접속을 받는 부분. 커넥션을 받는다!*/
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			/*데이터 넣기!*/
+			statement.setInt(1, comedianId);
+			/*쿼리 실행*/
+			statement.executeUpdate();
+			
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
 	}
 	
 	public void insertComedian(Comedian comedian) {
@@ -50,6 +148,7 @@ public class ComedianDao {
 			/*데이터 넣기!*/
 			statement.setString(1, comedian.getComedianName());
 			statement.setInt(2, comedian.getComedianAge());
+			/*쿼리 실행*/
 			statement.executeUpdate();
 			
 		} catch(ClassNotFoundException e) {
