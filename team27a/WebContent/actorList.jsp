@@ -10,27 +10,32 @@
 <title>actorList.jsp</title>
 </head>
 <body>
+	<%
+	request.setCharacterEncoding("euc-kr");
+	ActorDao actordao = new ActorDao();
+	// list는 actor의 id,name,age를 의미함
+	ArrayList<Actor> list = actordao.selectActorList();
+	%>	
+	<h1>남배우 목록</h1>
+	<a href="<%=request.getContextPath()%>/insertActorForm.jsp">등록</a>
 	<table border="1">
 		<tr>
-			<th>아이디</th>
-			<th>이름</th>
-			<th>나이</th>
+			<th>남배우 순서</th>
+			<th>남배우 이름</th>
+			<th>남배우 나이</th>
 		</tr>
-		<%
-			ActorDao actordao = new ActorDao();
-			// list는 actor의 id,name,age를 의미함
-			ArrayList<Actor> list = actordao.selectActorList();
-		
-			for(Actor actor : list) {
-		%>	
-				<tr>
-					<td><%=actor.getActorId() %></td>
-					<td><%=actor.getActorName() %></td>
-					<td><%=actor.getActorAge()%></td>
-				</tr>
-		<%
-			}
-		%>
+	<% 
+		for(Actor actor : list) {
+	%>	
+			<tr>
+				<td><%=actor.getActorId()%></td>
+				<td><%=actor.getActorName()%></td>
+				<td><%=actor.getActorAge()%></td>
+			</tr>
+	<%
+		}
+	%>
 	</table>
+	<a href="index.jsp">홈으로</a>
 </body>
 </html>

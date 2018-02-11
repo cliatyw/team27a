@@ -19,7 +19,7 @@
 				<td><input type="text" name="actorAge"></td>
 			</tr>
 		</table>
-		<input type="submit" value="등록">
+	  <input type="submit" value="등록">
 	</form>	
 </body>
 </html>
