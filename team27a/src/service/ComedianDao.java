@@ -9,20 +9,29 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 public class ComedianDao {
-	/*
-	default생성자 이긴 한데, 
-	public안해주면 not visible상태가 되기 때문에 호출 할 수 없다. 
-	따라서 public만 붙여서 선언해준다.
-	*/
+	/*default생성자 이긴 한데, public안해주면 not visible
+	 * 상태가 되기 때문에 호출 할 수 없다. 
+	 * 따라서 public만 붙여서 선언해준다.
+	 * */
 	public ComedianDao() {}
 	
+	
+	
+	
+	public void updateComedian(Comedian comedian) {
+		
+		
+	}
+	
+	public void deleteComedian(Comedian comedian) {
+		
+		
+	}
+	
 	public void insertComedian(Comedian comedian) {
-		/*
-		기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을 하게되면
-		지역변수로 선언이되어서 finally절에서 colose를 하지 못하기때문에
-		try절 밖에서 선언을 해준다.
-		*/
-		ArrayList<Comedian> list = new ArrayList<Comedian>();
+		/*기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을 하게되면지역변수로 
+		 * 선언이되어서 finally절에서 colose를 하지 못하기때문에try절 밖에서 선언을 해준다.
+		 * */
 		PreparedStatement statement = null;
 		Connection connection = null;
 		
@@ -55,11 +64,10 @@ public class ComedianDao {
 	
 	/*select 한 후 데이터타입이 Comedian인 list를 리턴해야 한다.*/
 	public ArrayList<Comedian> selectComedianList() {
-		/*
-		기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을 하게되면
-		지역변수로 선언이되어서 finally절에서 colose를 하지 못하기때문에
-		try절 밖에서 선언을 해준다.
-		*/
+		/*기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을
+		 * 하게되면지역변수로 선언이되어서 finally절에서 colose를
+		 * 하지 못하기때문에try절 밖에서 선언을 해준다.
+		 * */
 		ArrayList<Comedian> list = new ArrayList<Comedian>();
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
@@ -72,25 +80,28 @@ public class ComedianDao {
 			String dbUser = "root";
 			String dbPass = "java0000";
 			
-			/*쿼리는 데이터와 테이블을 제외한 부분에서 대분자를 사용해주면 더욱 가독성이 뛰어나다.*/
+			/*쿼리는 데이터와 테이블을 제외한 부분에서 대분자를 사용해주면 더욱 가독성이 뛰어나다.
+			 * 또한 order by 절 사용시 "order by 컬럼명 [asc or desc]" 형식을 사용하는데,
+			 * 숫자로 대신 하여도 되지만, 가독성을 더욱 좋게 하기위하여 앨리아스 된 이름을 써준다.
+			 * */
 			String sql = "SELECT comedian_id AS comedianId, comedian_name AS comedianName, comedian_age AS comedianAge FROM comedian ORDER BY comedianId ASC";
 			
 			/*db 접속을 받는 부분. 커넥션을 받는다!*/
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			statement = connection.prepareStatement(sql);
 			
-			/*
-			select 시에는 executeQuery를 실행하여, ResultSet을 리턴값으로 받는다.
-			update, delete, insert같은 경우는 executeUpdate메서드를 사용하여,
-			몇개의 행이 삭제되거나 추가되거나 업데이트 되었는지 확인 할 수 있다.
-			*/
+			/*select 시에는 executeQuery를 실행하여, 
+			 *ResultSet을 리턴값으로 받는다.update, delete, insert같은 경우는
+			 *executeUpdate메서드를 사용하여,몇개의 행이 삭제되거나
+			 *추가되거나 업데이트 되었는지 확인 할 수 있다.
+			 * */
 			resultSet = statement.executeQuery();
 			while(resultSet.next()){
 				Comedian comedian = new Comedian();
-				/*
-				select문에서 앨리아스를 일치시켜줬기 때문에, 이름을 똑같이 사용할수있다.
-				나중에는 일치시켜야만 코드를 줄일 수 있는 툴을 배울 것 이기때문에 필수!!
-				*/
+				/*select문에서 앨리아스를 일치시켜줬기 때문에, 이름을 
+				 * 똑같이 사용할수있다. 나중에는 일치시켜야만 코드를 줄일 수 있는 툴을 
+				 * 배울 것 이기때문에 필수!!
+				 * */
 				comedian.setComedianId(resultSet.getInt("comedianId"));
 				comedian.setComedianName(resultSet.getString("comedianName"));
 				comedian.setComedianAge(resultSet.getInt("comedianAge"));
