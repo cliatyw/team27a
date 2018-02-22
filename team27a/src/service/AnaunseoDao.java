@@ -112,7 +112,7 @@ public class AnaunseoDao {
 			}
 		}
 	}
-	public void deleteAnaunseo(String anaunseoId) {
+	public void deleteAnaunseo(int anaunseoId) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -123,7 +123,7 @@ public class AnaunseoDao {
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
 			preparedStatement = connection.prepareStatement("DELETE FROM anaunseo WHERE anaunseo_id=?");
-			preparedStatement.setString(1, anaunseoId);
+			preparedStatement.setInt(1, anaunseoId);
 			preparedStatement.executeUpdate();
 			
 		} catch (ClassNotFoundException e) {
