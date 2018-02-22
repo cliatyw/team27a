@@ -3,6 +3,7 @@
 <%@ page import="service.Singer"%>
 <%@ page import="service.SingerDao"%>
 <%@ page import="java.util.ArrayList"%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,7 +14,6 @@
 		<h1>가수 목록</h1>
 		<a href="<%= request.getContextPath() %>/insertSingerForm.jsp">등록</a>
 		<%
-			request.setCharacterEncoding("euc-kr");
 			SingerDao singerdao = new SingerDao();
 			ArrayList<Singer> list =singerdao.selectSingerList();
 		%>
@@ -37,8 +37,7 @@
 			<%		
 				}
 			%>	
-			</tbody>
-				
+			</tbody>		
 		</table>
 		<a href="index.jsp">홈으로</a>
 	</body>

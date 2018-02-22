@@ -7,24 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Connection;
-
 public class RapperDao {
-	
 	/*
 	 * default생성자 이긴 한데, public안해주면 
 	 * not visible상태가 되기 때문에 호출 할 수 없다. 
 	 * 따라서 public만 붙여서 선언해준다.
 	 */
 	public RapperDao() {}
-	
-	
-	public int insertRapper(Rapper rapper) {
-		//단위테스트
-		System.out.println(rapper);
-		return 0;
-	}
-	
-	
 	/*
 	 * select 한 후 리턴값으로 Rapper.class의 배열이나 List 받아야 한다.
 	 * 배열이나, ArrayList, HashMap을 사용할 수 있다.
@@ -77,4 +66,32 @@ public class RapperDao {
 		}
 		return list;
 	}
+	public void insertRapper(Rapper rapper) {			
+			PreparedStatement statement = null;
+			Connection connection = null;
+			
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+				String dbUser = "root";
+				String dbPass = "java0000";
+				String sql = "INSERT INTO rapper VALUES (NULL, ?, ?)";		
+			
+				connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);			
+				statement = connection.prepareStatement(sql);
+				statement.setString(1, rapper.getRapperName());
+				statement.setInt(2, rapper.getRapperAge());
+				statement.executeUpdate();
+		
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+		
+			} finally {
+				if (statement != null)try {statement.close();	} catch (SQLException ex) {}
+				if (connection != null)try {connection.close();	} catch (SQLException ex) {}
+			}
+			
+		}
 }
