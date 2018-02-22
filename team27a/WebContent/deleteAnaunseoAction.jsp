@@ -10,6 +10,7 @@
 	</head>
 	<body>
 		<%
+		//anaunseoId를 get방식으로 받아 int형식으로 변환후 매서드르를 실행시킨다.
 		String anaunseoId = request.getParameter("anaunseoId");
 		AnaunseoDao anaunseoDao = new AnaunseoDao();
 		anaunseoDao.deleteAnaunseo(Integer.parseInt(anaunseoId));

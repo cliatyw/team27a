@@ -1,10 +1,10 @@
 <!-- [김기성] -->
-<%@ page language = "java" contentType = "text/html; charset=EUC-KR" pageEncoding = "EUC-KR" %>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv = "Content-Type" content = "text/html; charset=EUC-KR">
+		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 		<title>index.jsp</title>
 	</head>
 	<body>
