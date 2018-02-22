@@ -1,23 +1,23 @@
 <!-- [최상욱] -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%@ page import="service.Singer"%>
-<%@ page import="service.SingerDao"%>
-<%@ page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
+<%@ page import="service.Singer" %>
+<%@ page import="service.SingerDao" %>
+<%@ page import="java.util.ArrayList" %>
 <% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<title>singerList</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<title>singerList.jsp</title>
 	</head>
 	<body>
 		<h1>가수 목록</h1>
-		<a href="<%= request.getContextPath() %>/insertSingerForm.jsp">등록</a>
-		<%
+		<a href = "<%= request.getContextPath() %>/insertSingerForm.jsp">등록</a>
+			<%
 			SingerDao singerdao = new SingerDao();
-			ArrayList<Singer> list =singerdao.selectSingerList();
-		%>
-		<table border="1">
+			ArrayList<Singer> list = singerdao.selectSingerList();
+			%>
+		<table border = "1">
 			<thead>
 				<tr>
 					<th>가수 순서</th>
@@ -28,21 +28,21 @@
 				</tr>
 			</thead>	
 			<tbody>			
-			<%				
+				<%				
 				for(Singer singer : list){			
-			%>
+				%>
 					<tr>
-						<td><%=singer.getSingerId()%></td>
-						<td><%=singer.getSingerName()%></td>
-						<td><%=singer.getSingerAge()%></td>
-						<td><a href="<%= request.getContextPath() %>/updateSingerForm.jsp?singerId=<%=singer.getSingerId()%>">수정</a></td>
-						<td><a href="<%= request.getContextPath() %>/deleteSingerAction.jsp?singerId=<%=singer.getSingerId()%>">삭제</a></td>
+						<td><%= singer.getSingerId() %></td>
+						<td><%= singer.getSingerName() %></td>
+						<td><%= singer.getSingerAge() %></td>
+						<td><a href = "<%= request.getContextPath() %>/updateSingerForm.jsp?singerId=<%= singer.getSingerId() %>">수정</a></td>
+						<td><a href = "<%= request.getContextPath() %>/deleteSingerAction.jsp?singerId=<%= singer.getSingerId() %>">삭제</a></td>
 					</tr>
-			<%		
+				<%		
 				}
-			%>	
+				%>	
 			</tbody>		
 		</table>
-		<a href="index.jsp">홈으로</a>
+		<a href = "index.jsp">홈으로</a>
 	</body>
 </html>

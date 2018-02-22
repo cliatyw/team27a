@@ -14,7 +14,7 @@ public class SingerDao {
 		//객체참조변수 선언.
 		ArrayList<Singer> list = new ArrayList<Singer>();
 		
-		// finally절에서 colose....
+		// finally절에서 colse....
 		PreparedStatement statement = null;
 		ResultSet rs = null;
 		Connection connection = null;
@@ -41,7 +41,6 @@ public class SingerDao {
 				list.add(singer);
 			}
 			// 단위테스트
-			System.out.println(list.size()+"<---listsize");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -92,7 +91,7 @@ public class SingerDao {
 		}
 		
 	}
-	public void deleteSinger(Singer singer) {
+	public void deleteSinger(int singerId) {
 		PreparedStatement statement = null;
 		Connection connection = null;
 		try {
@@ -103,7 +102,7 @@ public class SingerDao {
 		String sql = " DELETE FROM singer WHERE singer_id = ? ";
 		connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);	
 		statement = connection.prepareStatement(sql);
-		statement.setInt(1, singer.getSingerId());
+		statement.setInt(1, singerId);
 		
 		
 		statement.executeUpdate();
