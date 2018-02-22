@@ -28,9 +28,9 @@
 					<th>삭제</th>
 				</tr>
 			</thead>
-		<% 
+			<% 
 			for(Actor actor : list) {
-		%>	
+			%>	
 			<tbody>
 				<tr>
 					<td><%= actor.getActorId() %></td>
@@ -40,9 +40,9 @@
 					<td><a href = "<%= request.getContextPath() %>/deleteActorAction.jsp?actorId=<%= actor.getActorId() %>">삭제</a></td>
 				</tr>
 			</tbody>	
-		<%
+			<%
 			}
-		%>
+			%>
 		</table>
 		<a href = "index.jsp">홈으로</a>
 	</body>
