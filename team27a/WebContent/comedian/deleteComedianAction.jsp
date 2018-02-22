@@ -12,7 +12,7 @@
 		<%
 		ComedianDao comedianDao = new ComedianDao();
 		comedianDao.deleteComedian(Integer.parseInt(request.getParameter("comedianId")));
-		response.sendRedirect(request.getContextPath() + "/comedianList.jsp");
+		response.sendRedirect(request.getContextPath() + "/comedian/comedianList.jsp");
 		%>
 	</body>
 </html>

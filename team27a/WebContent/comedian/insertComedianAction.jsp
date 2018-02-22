@@ -25,7 +25,7 @@
 			comedian.setComedianAge(Integer.parseInt(request.getParameter("comedianAge")));
 			comedianDao.insertComedian(comedian);
 		}
-		response.sendRedirect(request.getContextPath() + "/comedianList.jsp");
+		response.sendRedirect(request.getContextPath() + "/comedian/comedianList.jsp");
 		%>
 	</body>
 </html>
