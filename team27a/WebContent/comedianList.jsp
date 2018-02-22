@@ -45,4 +45,4 @@
 		</table>
 		<a href="index.jsp">È¨À¸·Î</a>
 	</body>
-<html>
+</html>
