@@ -85,11 +85,13 @@ public class ActorDao {
 		}
 	}
 	public void deleteActor(int actorId) {
+		/*실행이 끝난후 데이터가 쌓이는것을 막기위해 finally를 이용해 close한다*/ 
 		Connection connection = null;
 		PreparedStatement statement = null;
+		/*드라이버로딩*/
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			
+			/*DB연결*/
 			String dbDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
