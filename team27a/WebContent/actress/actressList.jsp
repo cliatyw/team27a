@@ -36,14 +36,14 @@
 						<td><%=actress.getActressName()%></td>
 						<td><%=actress.getActressAge()%></td>
 						<td><a href="<%=request.getContextPath()%>/index.jsp">수정</a></td>
-						<td><a href="deleteActressAction.jsp?actressId=<%= actress.getActressId() %>">삭제</a></td>
+						<td><a href="<%=request.getContextPath()%>/actress/deleteActressAction.jsp?actressId=<%= actress.getActressId() %>">삭제</a></td>
 					</tr>			
 				<%
 				}
 				%>
 			</tbody>
 		</table>
-		<a href="index.jsp">홈으로</a>
+		<a href="<%=request.getContextPath()%>/index.jsp">홈으로</a>
 	</body>
 </html>
 
