@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AnaunseoDao {
-	
+	//목록을 보여주는 매서드
 	public ArrayList<Anaunseo> selectAnaunseoList() {
 		//collection 은 대표형태로 참조변수명을 설정하면 된다. ex) ArrayList -> list
 		//변수명을 한번에 고치기 위해선 마우스 오른쪽 refactor rename으로 가서 한번에 고칠수있다. 단축기 : alt shift R
@@ -77,6 +77,7 @@ public class AnaunseoDao {
 		return list;
 		//배열 리턴
 	}
+	//아나운서 이름과 나이를 삽입하는 매서드
 	public void insertAnaunseo(Anaunseo anaunseo) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -90,6 +91,8 @@ public class AnaunseoDao {
 			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			
+			/*form에서 넣은 class객체 주소값에 있는 이름과 나이를 db에 넣는다
+			id는 자동으로 증가하기 때문에 null로 하였다.*/
 			preparedStatement = connection.prepareStatement("INSERT INTO anaunseo VALUES (NULL, ?, ?)");
 			preparedStatement.setString(1, anaunseo.getAnaunseoName());
 			preparedStatement.setInt(2, anaunseo.getAnaunseoAge());

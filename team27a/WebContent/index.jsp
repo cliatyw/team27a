@@ -12,12 +12,12 @@
 	</header>
 	<nav style="float: left">
 		<ul>
-			<li><a href="<%= request.getContextPath() %>/actorList.jsp">actor list</a></li>
-			<li><a href="<%= request.getContextPath() %>/actressList.jsp">actress list</a></li>
-			<li><a href="<%= request.getContextPath() %>/singerList.jsp">singer list</a></li>
-			<li><a href="<%= request.getContextPath() %>/comedianList.jsp">comedian list</a></li>
-			<li><a href="<%= request.getContextPath() %>/rapperList.jsp">rapper list</a></li>
-			<li><a href="<%= request.getContextPath() %>/anaunseoList.jsp">anaunseo list</a></li>
+			<li><a href="<%= request.getContextPath() %>/image/actorList.jsp">actor list</a></li>
+			<li><a href="<%= request.getContextPath() %>/image/actressList.jsp">actress list</a></li>
+			<li><a href="<%= request.getContextPath() %>/image/singerList.jsp">singer list</a></li>
+			<li><a href="<%= request.getContextPath() %>/image/comedianList.jsp">comedian list</a></li>
+			<li><a href="<%= request.getContextPath() %>/image/rapperList.jsp">rapper list</a></li>
+			<li><a href="<%= request.getContextPath() %>/image/anaunseoList.jsp">anaunseo list</a></li>
 		</ul>
 	</nav>
 	<section>
@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td>¹éÁöÈÆ</td>
-				<td>actress</td>
+				<td>rapper, actress</td>
 				<td><img src="bjh.jpg" style="width: 150px; height: auto;"></td>
 			</tr>
 			<tr>
@@ -49,7 +49,7 @@
 			</tr>
 			<tr>
 				<td>±è±â¼º</td>
-				<td>rapper, anaunseo</td>
+				<td>anaunseo</td>
 				<td><img src="kks.jpg" style="width: 150px; height: auto;"></td>
 			</tr>
 		</table>
