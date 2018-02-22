@@ -54,7 +54,6 @@ public class SingerDao {
 		}
 		return list;
 	}
-	
 	public void insertSinger(Singer singer) {
 		
 		// finallyÀý¿¡¼­ close
@@ -92,5 +91,31 @@ public class SingerDao {
 			if (connection != null)try {connection.close();	} catch (SQLException ex) {}
 		}
 		
+	}
+	public void deleteSinger(Singer singer) {
+		PreparedStatement statement = null;
+		Connection connection = null;
+		try {
+		Class.forName("com.mysql.jdbc.Driver");
+		String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+		String dbUser = "root";
+		String dbPass = "java0000";
+		String sql = " DELETE FROM singer WHERE singer_id = ? ";
+		connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);	
+		statement = connection.prepareStatement(sql);
+		statement.setInt(1, singer.getSingerId());
+		
+		
+		statement.executeUpdate();
+		
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//´Ý±â
+			if (statement != null)try {statement.close();	} catch (SQLException ex) {}
+			if (connection != null)try {connection.close();	} catch (SQLException ex) {}
+		}
 	}
 }

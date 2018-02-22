@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<title>insertActorAction.jsp</title>
-</head>
+		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<title>insertRapperAction</title>
+	</head>
 	<body>
 	<%
 	String rapperName = request.getParameter("rapperName");

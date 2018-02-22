@@ -8,7 +8,7 @@
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<title>Insert title here</title>
+	<title>singerList</title>
 	</head>
 	<body>
 		<h1>가수 목록</h1>
@@ -23,6 +23,8 @@
 					<th>가수 순서</th>
 					<th>가수 이름</th>
 					<th>가수 나이</th>
+					<th>수정</th>
+					<th>삭제</th>
 				</tr>
 			</thead>	
 			<tbody>			
@@ -33,6 +35,8 @@
 						<td><%=singer.getSingerId()%></td>
 						<td><%=singer.getSingerName()%></td>
 						<td><%=singer.getSingerAge()%></td>
+						<td><a href="<%= request.getContextPath() %>/updateSingerForm.jsp?singerId=<%=singer.getSingerId()%>">수정</a></td>
+						<td><a href="<%= request.getContextPath() %>/deleteSingerAction.jsp?singerId=<%=singer.getSingerId()%>">삭제</a></td>
 					</tr>
 			<%		
 				}
