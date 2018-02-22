@@ -74,8 +74,8 @@ public class AnaunseoDao {
 				e.printStackTrace();
 			}
 		}
-		return list;
 		//배열 리턴
+		return list;
 	}
 	//아나운서 이름과 나이를 삽입하는 매서드
 	public void insertAnaunseo(Anaunseo anaunseo) {
@@ -146,7 +146,7 @@ public class AnaunseoDao {
 			}
 		}
 	}
-	//아이디값을 받아 한개만 이름과 나이를 클래스에 세팅하여 리턴하는 매서드
+	//아이디값을 받아 한개만 이름과 나이를 Anaunseo 클래스에 세팅하여 anaunseo를 리턴하는 매서드
 	public Anaunseo selectAnaunseoOne(int anaunseoId) {
 		Anaunseo anaunseo = new Anaunseo();
 		try {
@@ -192,7 +192,7 @@ public class AnaunseoDao {
 		}
 		return anaunseo;
 	}
-	
+	//Anaunseo type을 매개변수로 받아 입력받은 이름과 나이를 수정하는 매서드
 	public void updateAnaunseo(Anaunseo anaunseo) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -214,7 +214,7 @@ public class AnaunseoDao {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{ 
+		}finally{
 			try {
 				preparedStatement.close();
 			} catch (SQLException e) {

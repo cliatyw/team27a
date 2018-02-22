@@ -13,6 +13,7 @@
 		<%
 		AnaunseoDao anaunseoDao = new AnaunseoDao();
 		Anaunseo anaunseo = new Anaunseo();
+		//form에서 받은 값들을 anaunseo 객체에 셋팅한다.
 		anaunseo.setAnaunseoId(Integer.parseInt(request.getParameter("anaunseoId")));
 		anaunseo.setAnaunseoName(request.getParameter("anaunseoName"));
 		anaunseo.setAnaunseoAge(Integer.parseInt(request.getParameter("anaunseoAge")));

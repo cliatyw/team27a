@@ -13,6 +13,7 @@
 		<%
 		AnaunseoDao anaunseoDao = new AnaunseoDao();
 		Anaunseo anaunseo = new Anaunseo();
+		//id값을 받아 해당하는 이름과 나이를 input에 넣고 수정하면 updateAnaunseoAction.jsp 로 값들을 보낸다.
 		anaunseo = anaunseoDao.selectAnaunseoOne(Integer.parseInt(request.getParameter("anaunseoId")));
 		%>
 		<h1>수정 화면</h1>

@@ -1,4 +1,11 @@
 <!-- [김기성] -->
+<%-- 팀 통일 규칙:<% %>안에 한번 띄기
+		html 안에 tap 하기
+		한글입력처리 <%@ 밑에 무조건 쓰기
+		절대경로는 항상
+		<% 다음줄은 <%와 같은 곳에 ex) <%
+							   Anaunseo
+		--%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
