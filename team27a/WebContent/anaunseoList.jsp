@@ -37,6 +37,8 @@
 						<td><%=anaunseo.getAnaunseoId()%></td>
 						<td><%=anaunseo.getAnaunseoName()%></td>
 						<td><%=anaunseo.getAnaunseoAge()%></td>
+						<td><a href="updateAnaunseoForm.jsp?anaunseoId=<%=anaunseo.getAnaunseoId()%>">수정</a></td>
+						<td><a href="deleteAnaunseoAction.jsp?anaunseoId=<%=anaunseo.getAnaunseoId()%>">삭제</a></td>
 					</tr>
 			<%
 				}

@@ -9,16 +9,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AnaunseoDao {
+	//Dao에 쓰는 변수들을 전역변수로 한번에 처리
+	Connection connection = null;
+	ResultSet resultSet = null;
+	PreparedStatement preparedStatement = null;
 	//목록을 보여주는 매서드
 	public ArrayList<Anaunseo> selectAnaunseoList() {
 		//collection 은 대표형태로 참조변수명을 설정하면 된다. ex) ArrayList -> list
 		//변수명을 한번에 고치기 위해선 마우스 오른쪽 refactor rename으로 가서 한번에 고칠수있다. 단축기 : alt shift R
 		ArrayList<Anaunseo> list = new ArrayList<Anaunseo>();
 		//finally절에서 변수를 닫을 것이다.
-		Connection connection = null;
-		ResultSet resultSet = null;
-		PreparedStatement preparedStatement = null;
-		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			/*드라이버 로딩
@@ -79,9 +79,6 @@ public class AnaunseoDao {
 	}
 	//아나운서 이름과 나이를 삽입하는 매서드
 	public void insertAnaunseo(Anaunseo anaunseo) {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
@@ -101,6 +98,37 @@ public class AnaunseoDao {
 		}catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally{ 
+			try {
+				preparedStatement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public void deleteAnaunseo(String anaunseoId) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+
+			preparedStatement = connection.prepareStatement("DELETE FROM anaunseo WHERE anaunseo_id=?");
+			preparedStatement.setString(1, anaunseoId);
+			preparedStatement.executeUpdate();
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{ 
 			try {
