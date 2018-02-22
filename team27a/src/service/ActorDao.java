@@ -83,5 +83,27 @@ public class ActorDao {
 			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
 			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
 		}
-	} 
+	}
+	public void deleteActor(int actorId) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			String dbDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "DELETE FROM actor WHERE actor_id=?";
+						
+			connection = DriverManager.getConnection(dbDriver, dbUser, dbPass);
+			statement=connection.prepareStatement(sql);
+			statement.setInt(1, actorId);
+			statement.executeUpdate();
+		} catch (ClassNotFoundException |  SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+	}
 }
