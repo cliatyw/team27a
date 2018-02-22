@@ -144,7 +144,7 @@ public class ActorDao {
 			if (resultset != null) try { resultset.close(); } catch(SQLException ex) {}
 		} return actor;
 	}
-	public void UpdateActor(Actor actor) {
+	public void updateActor(Actor actor) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		
