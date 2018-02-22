@@ -20,19 +20,23 @@
 		<table border="1">
 			<thead>
 				<tr>
-					<td>래퍼 순서</td>
-					<td>래퍼 이름</td>
-					<td>래퍼 나이</td>
+					<th>래퍼 순서</th>
+					<th>래퍼 이름</th>
+					<th>래퍼 나이</th>
+					<th>수정</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>	
 				<%
-					for (Rapper rapper : arrayRapper) {
+				for (Rapper rapper : arrayRapper) {
 				%>
 				<tr>
 					<td><%=rapper.getRapperId()%></td>
 					<td><%=rapper.getRapperName()%></td>
 					<td><%=rapper.getRapperAge()%></td>
+					<td><a href="<%=request.getContextPath()%>/index.jsp">수정</a></td>
+					<td><a href="<%=request.getContextPath()%>/index.jsp">삭제</a></td>
 				</tr>
 				<%
 					}

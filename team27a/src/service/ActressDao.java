@@ -17,6 +17,36 @@ public class ActressDao {
 	 */
 	public ActressDao() {}
 	
+	public void deleteActress(int actressId) {
+		
+		Connection connection = null;
+		PreparedStatement statement = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver"); 
+			
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "DELETE FROM actress WHERE actress_id=?";
+			
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, actressId);
+			statement.executeUpdate();
+			
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if(connection != null) try { connection.close(); } catch(SQLException ex) {} 
+		}
+}
+		
+	
+	
 	public void insertActress(Actress actress) {
 		/*실행이 끝난후 데이터가 쌓이는것을 막기위해 finally를 이용해 close한다*/ 
 		Connection connection = null;
@@ -99,4 +129,6 @@ public class ActressDao {
 			}
 			return list;
 		}
+	
+	
 }

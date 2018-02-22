@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<title>actressList.jsp</title>
 	</head>
 	<%
 		ActressDao actressDao = new ActressDao();
@@ -16,22 +18,32 @@
 		<h1>가수 목록</h1>
 		<a href="<%=request.getContextPath()%>/insertActressForm.jsp">등록</a>
 		<table border="1">
-			<tr>
-				<td>여배우 순서</td>
-				<td>여배우 이름</td>
-				<td>여배우 나이</td>
-			</tr>
-			<%
+			<thead>
+				<tr>
+					<th>여배우 순서</th>
+					<th>여배우 이름</th>
+					<th>여배우 나이</th>
+					<th>수정</th>
+					<th>삭제</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				<%
 				for (Actress actress : arrayActress) {
-			%>
-			<tr>
-				<td><%=actress.getActressId()%></td>
-				<td><%=actress.getActressName()%></td>
-				<td><%=actress.getActressAge()%></td>
-			</tr>
-			<%
+				%>
+					<tr>
+						<td><%=actress.getActressId()%></td>
+						<td><%=actress.getActressName()%></td>
+						<td><%=actress.getActressAge()%></td>
+						<td><a href="<%=request.getContextPath()%>/index.jsp">수정</a></td>
+						<td><a href="<%=request.getContextPath()%>/index.jsp">삭제</a></td>
+					</tr>
+			
+				<%
 				}
-			%>
+				%>
+			</tbody>
 		</table>
 		<a href="index.jsp">홈으로</a>
 	</body>

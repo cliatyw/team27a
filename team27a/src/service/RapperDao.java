@@ -14,11 +14,40 @@ public class RapperDao {
 	 * 따라서 public만 붙여서 선언해준다.
 	 */
 	public RapperDao() {}
+	
+public void deleteRapper(int rapperId) {
+		
+		Connection connection = null;
+		PreparedStatement statement = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver"); 
+			
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "DELETE FROM rapper WHERE rapper_id=?";
+			
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, rapperId);
+			statement.executeUpdate();
+			
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if(connection != null) try { connection.close(); } catch(SQLException ex) {} 
+		}
+}
 	/*
 	 * select 한 후 리턴값으로 Rapper.class의 배열이나 List 받아야 한다.
 	 * 배열이나, ArrayList, HashMap을 사용할 수 있다.
 	 * ArrayList를 지금 사용해보고, HashMap도 테스트 해볼것.
 	 */
+	
 	public ArrayList<Rapper> selectRapperList() {
 		//기본적인 객체참조변수 선언.
 		ArrayList<Rapper> list = new ArrayList<Rapper>();
