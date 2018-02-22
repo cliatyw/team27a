@@ -1,22 +1,20 @@
 <!-- [백지훈] -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import="service.ActressDao"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="service.Actress"%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
-	
 	</head>
 	<%
-		request.setCharacterEncoding("euc-kr");
 		ActressDao actressDao = new ActressDao();
 		ArrayList<Actress> arrayActress = actressDao.selectActressList();
 	%>
 	<body>
 		<h1>가수 목록</h1>
-		<a href="http://naver.com">등록</a>
+		<a href="<%=request.getContextPath()%>/insertActressForm.jsp">등록</a>
 		<table border="1">
 			<tr>
 				<td>여배우 순서</td>

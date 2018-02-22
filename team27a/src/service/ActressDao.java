@@ -17,12 +17,34 @@ public class ActressDao {
 	 */
 	public ActressDao() {}
 	
-	
-	public int insertActress(Actress actress) {
-		//단위테스트
-		System.out.println(actress);
-		return 0;
-	}
+	public void insertActress(Actress actress) {
+		/*실행이 끝난후 데이터가 쌓이는것을 막기위해 finally를 이용해 close한다*/ 
+		Connection connection = null;
+		PreparedStatement statement = null;
+		/*드라이버로딩*/
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			/*DB연결*/
+			String dbDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "INSERT INTO actress(actress_name, actress_age) VALUES (?,?);";
+			
+			connection = DriverManager.getConnection(dbDriver, dbUser, dbPass);
+			statement=connection.prepareStatement(sql);
+			statement.setString(1, actress.getActressName());
+			statement.setInt(2, actress.getActressAge());
+			/*executeQuery는 쿼리결과를 ResultSet을 얻기 위한 메소드로 주로 SELECT문에 
+			사용되며 ,executeUpdate는 쿼리문으로 데이터를 다루는 INSERT, UPDATE,
+			DELETE문이나 테이블을 다루는 CREATAE, DROP, ALTER에 사용*/
+			statement.executeUpdate();			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+	} 
 	
 	
 	/*

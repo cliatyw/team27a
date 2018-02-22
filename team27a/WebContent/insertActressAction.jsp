@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import ="service.Actress" %>
 <%@ page import ="service.ActressDao" %>
+<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,13 +10,13 @@
 		<title>insertActressAction.jsp</title>
 	</head>
 		<body>
-			<%
-				request.setCharacterEncoding("euc-kr");	
-			
+			<%			
 				String actressName = request.getParameter("actressName");
 				int actressAge = Integer.parseInt(request.getParameter("actressAge"));
 				
-				//form에서 받은 값을 클래스에 넣는다.
+				System.out.println(actressName);
+				System.out.println(actressAge);
+				
 				Actress actress = new Actress();
 				
 				actress.setActressName(actressName);
@@ -26,6 +27,7 @@
 				
 				response.sendRedirect(request.getContextPath() + "/actressList.jsp");
 			%>
+			
 		</body>
 </html>
  

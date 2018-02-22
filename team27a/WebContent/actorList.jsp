@@ -3,6 +3,7 @@
 <%@ page import = "service.Actor" %>
 <%@ page import = "service.ActorDao" %>
 <%@ page import = "java.util.ArrayList" %>
+<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,6 @@
 </head>
 <body>
 	<%
-	request.setCharacterEncoding("euc-kr");
 	ActorDao actordao = new ActorDao();
 	// list는 actor의 id,name,age를 의미함
 	ArrayList<Actor> list = actordao.selectActorList();
