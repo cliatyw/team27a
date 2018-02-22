@@ -53,6 +53,7 @@ public class SingerDao {
 		}
 		return list;
 	}
+	//singer 등록
 	public void insertSinger(Singer singer) {
 		
 		// finally절에서 close
@@ -91,6 +92,7 @@ public class SingerDao {
 		}
 		
 	}
+	//singer 삭제
 	public void deleteSinger(int singerId) {
 		PreparedStatement statement = null;
 		Connection connection = null;
@@ -114,7 +116,8 @@ public class SingerDao {
 			if (connection != null)try {connection.close();	} catch (SQLException ex) {}
 		}
 	}
-	public Singer uSelectforUpdate(String u_id) {
+	//singer 업데이트 폼
+	public Singer selectSingerOne(int singerId) {
 		PreparedStatement statement = null;
 		Connection connection = null;
 		ResultSet rs = null;
@@ -124,27 +127,56 @@ public class SingerDao {
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-			String sql = " select * from tb_user where u_id = ? ";
+			String sql = " SELECT singer_id AS singerId, singer_name AS singerName,singer_age AS singerAge FROM singer WHERE singer_id=? ";
+			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);	
 			statement = connection.prepareStatement(sql);
-			statement.setString(1, u_id);
-			if (rs.next()) {//그 다음 값이있을때까지 실행
-				//singer의 참조변수에 db값을 가져온다.
+			statement.setInt(1, singerId);
+			System.out.println(singerId);
+			rs = statement.executeQuery();	
+			//id값을 받아와서 id,name,age를 조회후 값을 세팅.
+			while (rs.next()) {
 				singer.setSingerId(rs.getInt("singerId"));
 				singer.setSingerName(rs.getString("singerName"));
 				singer.setSingerAge(rs.getInt("singerAge"));
 			}
-			rs = statement.executeQuery();	
-			
 		}catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			//닫기
 			if (statement != null)try {statement.close();	} catch (SQLException ex) {}
 			if (connection != null)try {connection.close();	} catch (SQLException ex) {}
 		}
 		return singer; 
+	}
+	
+	//singer 업데이트 action
+	public void updateSinger(Singer singer) {
+		PreparedStatement statement = null;
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "UPDATE singer SET singer_name=?, singer_age=? WHERE singer_id=? ";
+			
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);	
+			statement = connection.prepareStatement(sql);
+			//singer액션에서 세팅한 값들을 아이디, 이름, 나이값에 게팅해주고 그 값들을 다시 쿼리문에  세팅.
+			statement.setString(1, singer.getSingerName());
+			statement.setInt(2, singer.getSingerAge());
+			statement.setInt(3, singer.getSingerId());
+			statement.executeUpdate();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (statement != null)try {statement.close();	} catch (SQLException ex) {}
+			if (connection != null)try {connection.close();	} catch (SQLException ex) {}
+		}
 	}
 }

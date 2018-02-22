@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<h1>등록 화면</h1>
-		<form action = "<%= request.getContextPath() %>/insertSingerAction.jsp" method = "post">
+		<form action = "<%= request.getContextPath() %>/singer/insertSingerAction.jsp" method = "post">
 			<table border="1">
 				<tr>
 					<td>가수 이름</td>
