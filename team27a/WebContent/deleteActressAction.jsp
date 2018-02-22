@@ -1,7 +1,7 @@
 <!-- [¹éÁöÈÆ] -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@ page import = "service.ActressDao" %>
-<% request.setCharacterEncoding("eur-rk"); %>
+<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,7 +11,7 @@
 	<body>
 		<%
 		ActressDao actressDao = new ActressDao();
-		actressDao.deleteActress(Integer.parseInt(request.getParameter("actress")));	
+		actressDao.deleteActress(Integer.parseInt(request.getParameter("actressId")));	
 		response.sendRedirect(request.getContextPath() + "/actressList.jsp");
 		%>
 	</body>

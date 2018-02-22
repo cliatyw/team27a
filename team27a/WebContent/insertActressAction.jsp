@@ -1,5 +1,5 @@
 <!-- [¹éÁöÈÆ] -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@ page import ="service.Actress" %>
 <%@ page import ="service.ActressDao" %>
 <% request.setCharacterEncoding("euc-kr"); %>

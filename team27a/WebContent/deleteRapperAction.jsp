@@ -1,7 +1,7 @@
 <!-- [¹éÁöÈÆ] -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@ page import = "service.RapperDao" %>
-<% request.setCharacterEncoding("eur-rk"); %>
+<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
