@@ -24,7 +24,7 @@
 		anaunseoDao.insertAnaunseo(anaunseo);
 		
 		//리스트 화면으로 돌아감
-		response.sendRedirect(request.getContextPath() + "/anaunseoList.jsp");
+		response.sendRedirect(request.getContextPath() + "/anaunseo/anaunseoList.jsp");
 		%>
 	</body>
 </html>

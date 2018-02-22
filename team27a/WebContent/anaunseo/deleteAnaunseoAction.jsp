@@ -15,7 +15,7 @@
 		AnaunseoDao anaunseoDao = new AnaunseoDao();
 		anaunseoDao.deleteAnaunseo(Integer.parseInt(anaunseoId));
 
-		response.sendRedirect(request.getContextPath() + "/anaunseoList.jsp");
+		response.sendRedirect(request.getContextPath() + "/anaunseo/anaunseoList.jsp");
 		%>
 	</body>
 </html>

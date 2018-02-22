@@ -16,7 +16,7 @@
 		anaunseo = anaunseoDao.selectAnaunseoOne(Integer.parseInt(request.getParameter("anaunseoId")));
 		%>
 		<h1>수정 화면</h1>
-		<form action="<%= request.getContextPath() %>/updateAnaunseoAction.jsp" method="post">
+		<form action="<%= request.getContextPath() %>/anaunseo/updateAnaunseoAction.jsp" method="post">
 			<table border="1">
 				<tr>
 					<td>아나운서 이름</td>

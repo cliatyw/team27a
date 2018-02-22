@@ -26,7 +26,7 @@
 						<td>actor</td>
 						<td>
 							<ul>
-								<li><a href="<%= request.getContextPath() %>/actorList.jsp">actor list</a></li>
+								<li><a href="<%= request.getContextPath() %>/actor/actorList.jsp">actor list</a></li>
 							</ul>
 						</td>
 					</tr>
@@ -35,8 +35,8 @@
 						<td>rapper, actress</td>
 						<td>
 							<ul>
-								<li><a href="<%= request.getContextPath() %>/rapperList.jsp">rapper list</a></li>
-								<li><a href="<%= request.getContextPath() %>/actressList.jsp">actress list</a></li>
+								<li><a href="<%= request.getContextPath() %>/rapper/rapperList.jsp">rapper list</a></li>
+								<li><a href="<%= request.getContextPath() %>/actress/actressList.jsp">actress list</a></li>
 							</ul>
 						</td>
 					</tr>
@@ -45,7 +45,7 @@
 						<td>singer</td>
 						<td>
 							<ul>
-								<li><a href="<%= request.getContextPath() %>/singerList.jsp">singer list</a></li>
+								<li><a href="<%= request.getContextPath() %>/singer/singerList.jsp">singer list</a></li>
 							</ul>
 						</td>
 					</tr>
@@ -54,7 +54,7 @@
 						<td>comedian</td>
 						<td>
 							<ul>
-								<li><a href="<%= request.getContextPath() %>/comedianList.jsp">comedian list</a></li>
+								<li><a href="<%= request.getContextPath() %>/comedian/comedianList.jsp">comedian list</a></li>
 							</ul>
 						</td>
 					</tr>
@@ -63,7 +63,7 @@
 						<td>anaunseo</td>
 						<td>
 							<ul>
-								<li><a href="<%= request.getContextPath() %>/anaunseoList.jsp">anaunseo list</a></li>
+								<li><a href="<%= request.getContextPath() %>/anaunseo/anaunseoList.jsp">anaunseo list</a></li>
 							</ul>
 						</td>
 					</tr>

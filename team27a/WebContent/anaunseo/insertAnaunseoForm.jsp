@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<h1>등록 화면</h1>
-		<form action="<%= request.getContextPath() %>/insertAnaunseoAction.jsp" method="post">
+		<form action="<%= request.getContextPath() %>/anaunseo/insertAnaunseoAction.jsp" method="post">
 			<table border="1">
 				<tr>
 					<td>아나운서 이름</td>

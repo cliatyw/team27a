@@ -17,7 +17,7 @@
 		//매서드 실행 후 리턴값을 배열에 대입
 		%>
 		<h1>아나운서 목록</h1>
-		<a href="<%= request.getContextPath() %>/insertAnaunseoForm.jsp">등록</a>
+		<a href="<%= request.getContextPath() %>/anaunseo/insertAnaunseoForm.jsp">등록</a>
 		
 		<!-- table에 thead와 tbody 삽입 -->
 		<table border="1">
@@ -39,8 +39,8 @@
 						<td><%= anaunseo.getAnaunseoId() %></td>
 						<td><%= anaunseo.getAnaunseoName() %></td>
 						<td><%= anaunseo.getAnaunseoAge() %></td>
-						<td><a href="updateAnaunseoForm.jsp?anaunseoId=<%= anaunseo.getAnaunseoId() %>">수정</a></td>
-						<td><a href="deleteAnaunseoAction.jsp?anaunseoId=<%= anaunseo.getAnaunseoId() %>">삭제</a></td>
+						<td><a href="<%= request.getContextPath() %>/anaunseo/updateAnaunseoForm.jsp?anaunseoId=<%= anaunseo.getAnaunseoId() %>">수정</a></td>
+						<td><a href="<%= request.getContextPath() %>/anaunseo/deleteAnaunseoAction.jsp?anaunseoId=<%= anaunseo.getAnaunseoId() %>">삭제</a></td>
 					</tr>
 				<%
 				}

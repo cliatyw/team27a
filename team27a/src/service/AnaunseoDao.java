@@ -147,6 +147,7 @@ public class AnaunseoDao {
 		}
 	}
 	public Anaunseo selectAnaunseoOne(int anaunseoId) {
+		Anaunseo anaunseo = new Anaunseo();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -161,11 +162,33 @@ public class AnaunseoDao {
 			preparedStatement.setInt(1, anaunseoId);
 			resultSet = preparedStatement.executeQuery();
 			
+			while(resultSet.next()) {
+				anaunseo.setAnaunseoId(resultSet.getInt("anaunseoId"));
+				anaunseo.setAnaunseoName(resultSet.getString("anaunseoName"));
+				anaunseo.setAnaunseoAge(resultSet.getInt("anaunseoAge"));
+			}
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{ 
+			try {
+				resultSet.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				preparedStatement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
+		return anaunseo;
 	}
 }
