@@ -11,13 +11,14 @@
 		<title>anaunseoList.jsp</title>
 	</head>
 	<body>
-		<h1>아나운서 목록</h1>
-		<a href="<%= request.getContextPath() %>/insertAnaunseoForm.jsp">등록</a>
 		<%
 		AnaunseoDao anaunseoDao = new AnaunseoDao();
 		ArrayList<Anaunseo> list = anaunseoDao.selectAnaunseoList();
 		//매서드 실행 후 리턴값을 배열에 대입
 		%>
+		<h1>아나운서 목록</h1>
+		<a href="<%= request.getContextPath() %>/insertAnaunseoForm.jsp">등록</a>
+		
 		<!-- table에 thead와 tbody 삽입 -->
 		<table border="1">
 			<thead>
@@ -25,6 +26,8 @@
 					<th>아나운서 순서</th>
 					<th>아나운서 이름</th>
 					<th>아나운서 나이</th>
+					<th>수정</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
