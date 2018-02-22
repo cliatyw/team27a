@@ -108,4 +108,7 @@ public class ActorDao {
 			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
 		}
 	}
+	public Actor selectActorOne(int actorId) {
+		return null;
+	}
 }
