@@ -3,10 +3,7 @@
 <%@ page import = "service.ComedianDao" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "service.Comedian" %>
-<%
-	/*이거는 사용자가 입력한 데이터를 post방식으로 보내서 받을때 문자셋을 euc-kr로 받겠다는것!*/
-	request.setCharacterEncoding("euc-kr");
-%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
