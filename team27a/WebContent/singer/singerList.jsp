@@ -11,12 +11,12 @@
 		<title>singerList.jsp</title>
 	</head>
 	<body>
+		<%
+		SingerDao singerdao = new SingerDao();
+		ArrayList<Singer> list = singerdao.selectSingerList();
+		%>
 		<h1>가수 목록</h1>
 		<a href = "<%= request.getContextPath() %>/insertSingerForm.jsp">등록</a>
-			<%
-			SingerDao singerdao = new SingerDao();
-			ArrayList<Singer> list = singerdao.selectSingerList();
-			%>
 		<table border = "1">
 			<thead>
 				<tr>

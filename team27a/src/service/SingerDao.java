@@ -95,18 +95,15 @@ public class SingerDao {
 		PreparedStatement statement = null;
 		Connection connection = null;
 		try {
-		Class.forName("com.mysql.jdbc.Driver");
-		String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
-		String dbUser = "root";
-		String dbPass = "java0000";
-		String sql = " DELETE FROM singer WHERE singer_id = ? ";
-		connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);	
-		statement = connection.prepareStatement(sql);
-		statement.setInt(1, singerId);
-		
-		
-		statement.executeUpdate();
-		
+			Class.forName("com.mysql.jdbc.Driver");
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = " DELETE FROM singer WHERE singer_id = ? ";
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);	
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, singerId);
+			statement.executeUpdate();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -116,5 +113,38 @@ public class SingerDao {
 			if (statement != null)try {statement.close();	} catch (SQLException ex) {}
 			if (connection != null)try {connection.close();	} catch (SQLException ex) {}
 		}
+	}
+	public Singer uSelectforUpdate(String u_id) {
+		PreparedStatement statement = null;
+		Connection connection = null;
+		ResultSet rs = null;
+		Singer singer = new Singer();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = " select * from tb_user where u_id = ? ";
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);	
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, u_id);
+			if (rs.next()) {//그 다음 값이있을때까지 실행
+				//singer의 참조변수에 db값을 가져온다.
+				singer.setSingerId(rs.getInt("singerId"));
+				singer.setSingerName(rs.getString("singerName"));
+				singer.setSingerAge(rs.getInt("singerAge"));
+			}
+			rs = statement.executeQuery();	
+			
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//닫기
+			if (statement != null)try {statement.close();	} catch (SQLException ex) {}
+			if (connection != null)try {connection.close();	} catch (SQLException ex) {}
+		}
+		return singer; 
 	}
 }
