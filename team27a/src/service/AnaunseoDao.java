@@ -13,7 +13,7 @@ public class AnaunseoDao {
 	Connection connection = null;
 	ResultSet resultSet = null;
 	PreparedStatement preparedStatement = null;
-	//목록을 보여주는 매서드
+	//목록을 보여주는 매서드 ArrayList<Anaunseo>로 리턴값을 받는다.
 	public ArrayList<Anaunseo> selectAnaunseoList() {
 		//collection 은 대표형태로 참조변수명을 설정하면 된다. ex) ArrayList -> list
 		//변수명을 한번에 고치기 위해선 마우스 오른쪽 refactor rename으로 가서 한번에 고칠수있다. 단축기 : alt shift R
@@ -85,12 +85,13 @@ public class AnaunseoDao {
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
+			String sql = "INSERT INTO anaunseo VALUES (NULL, ?, ?)";
 			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			
 			/*form에서 넣은 class객체 주소값에 있는 이름과 나이를 db에 넣는다
 			id는 자동으로 증가하기 때문에 null로 하였다.*/
-			preparedStatement = connection.prepareStatement("INSERT INTO anaunseo VALUES (NULL, ?, ?)");
+			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, anaunseo.getAnaunseoName());
 			preparedStatement.setInt(2, anaunseo.getAnaunseoAge());
 			preparedStatement.executeUpdate();
@@ -112,6 +113,7 @@ public class AnaunseoDao {
 			}
 		}
 	}
+	//아이디값을 받아 삭제를 위한 매서드
 	public void deleteAnaunseo(int anaunseoId) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -119,10 +121,11 @@ public class AnaunseoDao {
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
+			String sql = "DELETE FROM anaunseo WHERE anaunseo_id=?";
 
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
-			preparedStatement = connection.prepareStatement("DELETE FROM anaunseo WHERE anaunseo_id=?");
+			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, anaunseoId);
 			preparedStatement.executeUpdate();
 			
@@ -142,5 +145,27 @@ public class AnaunseoDao {
 				e.printStackTrace();
 			}
 		}
+	}
+	public Anaunseo selectAnaunseoOne(int anaunseoId) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "SELECT anaunseo_id AS anaunseoId, anaunseo_name AS anaunseoName, anaunseo_age AS anaunseoAge FROM anaunseo WHERE anaunseo_id=?";
+
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, anaunseoId);
+			resultSet = preparedStatement.executeQuery();
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
