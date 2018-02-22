@@ -17,6 +17,7 @@
 		%>
 		<h1>수정 화면</h1>
 		<form action="<%= request.getContextPath() %>/anaunseo/updateAnaunseoAction.jsp" method="post">
+			<input type ="hidden" name="anaunseoId" value=<%= anaunseo.getAnaunseoId() %>>
 			<table border="1">
 				<tr>
 					<td>아나운서 이름</td>

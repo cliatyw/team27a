@@ -146,6 +146,7 @@ public class AnaunseoDao {
 			}
 		}
 	}
+	//아이디값을 받아 한개만 이름과 나이를 클래스에 세팅하여 리턴하는 매서드
 	public Anaunseo selectAnaunseoOne(int anaunseoId) {
 		Anaunseo anaunseo = new Anaunseo();
 		try {
@@ -190,5 +191,40 @@ public class AnaunseoDao {
 			}
 		}
 		return anaunseo;
+	}
+	
+	public void updateAnaunseo(Anaunseo anaunseo) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "UPDATE anaunseo SET anaunseo_name=?, anaunseo_age=? WHERE anaunseo_id=?";
+
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, anaunseo.getAnaunseoName());
+			preparedStatement.setInt(2, anaunseo.getAnaunseoAge());
+			preparedStatement.setInt(3, anaunseo.getAnaunseoId());
+			preparedStatement.executeUpdate();
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{ 
+			try {
+				preparedStatement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
