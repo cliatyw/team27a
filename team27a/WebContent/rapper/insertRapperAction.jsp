@@ -22,7 +22,7 @@
 		RapperDao rapperDao = new RapperDao();
 		rapperDao.insertRapper(rapper);
 	
-		response.sendRedirect(request.getContextPath() + "/rapperList.jsp");
+		response.sendRedirect(request.getContextPath() + "/rapper/rapperList.jsp");
 		%>
 	</body>
 </html>

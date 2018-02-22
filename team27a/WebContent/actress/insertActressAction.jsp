@@ -21,7 +21,7 @@
 		ActressDao actressDao = new ActressDao();
 		actressDao.insertActress(actress);
 				
-		response.sendRedirect(request.getContextPath() + "/actressList.jsp");
+		response.sendRedirect(request.getContextPath() + "/actress/actressList.jsp");
 		%>	
 	</body>
 </html>

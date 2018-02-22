@@ -5,19 +5,19 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title> insertRapperForm.jsp </title>
+		<title> insertActressFrom.jsp </title>
 	</head>
 	<body>
 		<h1>등록 화면</h1>
-		<form action="<%= request.getContextPath() %>/insertRapperAction.jsp" method="post">
+		<form action="<%= request.getContextPath() %>/actress/insertActressAction.jsp" method="post">
 			<table border="1">
 				<tr>
-					<td>래퍼 이름</td>
-					<td><input type="text" name="rapperName"></td>
+					<td>여배우 이름</td>
+					<td><input type="text" name="actressName"></td>
 				</tr>
 				<tr>
-					<td>래퍼 나이</td>
-					<td><input type="text" name="rapperAge"></td>
+					<td>여배우 나이</td>
+					<td><input type="text" name="actressAge"></td>
 				</tr>
 			</table>
 			<input type="submit" value="등록">

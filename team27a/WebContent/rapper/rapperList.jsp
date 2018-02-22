@@ -16,7 +16,7 @@
 		ArrayList<Rapper> arrayRapper = rapperDao.selectRapperList();
 		%>
 		<h1>래퍼 목록</h1>
-		<a href="<%= request.getContextPath() %>/insertRapperForm.jsp">등록</a>
+		<a href="<%= request.getContextPath() %>/rapper/insertRapperForm.jsp">등록</a>
 		<table border="1">
 			<thead>
 				<tr>

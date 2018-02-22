@@ -15,7 +15,8 @@ public class ActressDao {
 	 * not visible상태가 되기 때문에 호출 할 수 없다. 
 	 * 따라서 public만 붙여서 선언해준다.
 	 */
-	public ActressDao() {}
+	public ActressDao() {
+	}
 	
 	public void deleteActress(int actressId) {
 		
@@ -86,7 +87,7 @@ public class ActressDao {
 		//기본적인 객체참조변수 선언.
 		ArrayList<Actress> list = new ArrayList<Actress>();
 		
-		// finally절에서 colose....
+		// finally절에서 close....
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		Connection connection = null;

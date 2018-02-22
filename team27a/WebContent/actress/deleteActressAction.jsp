@@ -1,18 +1,18 @@
 <!-- [백지훈] -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
-<%@ page import = "service.RapperDao" %>
+<%@ page import = "service.ActressDao" %>
 <% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title> deleteRapperAction.jsp </title>
+		<title> deleteActressAction.jsp </title>
 	</head>
 	<body>
 		<%
-		RapperDao rapperDao = new RapperDao();
-		rapperDao.deleteRapper(Integer.parseInt(request.getParameter("rapperId")));
-		response.sendRedirect(request.getContextPath() + "/rapperList.jsp");
+		ActressDao actressDao = new ActressDao();
+		actressDao.deleteActress(Integer.parseInt(request.getParameter("actressId")));	
+		response.sendRedirect(request.getContextPath() + "/actress/actressList.jsp");
 		%>
 	</body>
 </html>

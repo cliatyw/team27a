@@ -15,7 +15,7 @@ public class RapperDao {
 	 */
 	public RapperDao() {}
 	
-public void deleteRapper(int rapperId) {
+	public void deleteRapper(int rapperId) {
 		
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -52,7 +52,7 @@ public void deleteRapper(int rapperId) {
 		//기본적인 객체참조변수 선언.
 		ArrayList<Rapper> list = new ArrayList<Rapper>();
 		
-		// finally절에서 colose....
+		// finally절에서 close....
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		Connection connection = null;
