@@ -12,12 +12,12 @@
 	</header>
 	<nav style="float: left">
 		<ul>
-			<li><a href="<%= request.getContextPath() %>/image/actorList.jsp">actor list</a></li>
-			<li><a href="<%= request.getContextPath() %>/image/actressList.jsp">actress list</a></li>
-			<li><a href="<%= request.getContextPath() %>/image/singerList.jsp">singer list</a></li>
-			<li><a href="<%= request.getContextPath() %>/image/comedianList.jsp">comedian list</a></li>
-			<li><a href="<%= request.getContextPath() %>/image/rapperList.jsp">rapper list</a></li>
-			<li><a href="<%= request.getContextPath() %>/image/anaunseoList.jsp">anaunseo list</a></li>
+			<li><a href="<%= request.getContextPath() %>/actorList.jsp">actor list</a></li>
+			<li><a href="<%= request.getContextPath() %>/actressList.jsp">actress list</a></li>
+			<li><a href="<%= request.getContextPath() %>/singerList.jsp">singer list</a></li>
+			<li><a href="<%= request.getContextPath() %>/comedianList.jsp">comedian list</a></li>
+			<li><a href="<%= request.getContextPath() %>/rapperList.jsp">rapper list</a></li>
+			<li><a href="<%= request.getContextPath() %>/anaunseoList.jsp">anaunseo list</a></li>
 		</ul>
 	</nav>
 	<section>
@@ -30,31 +30,29 @@
 			<tr>
 				<td>±èµµÈñ</td>
 				<td>actor</td>
-				<td><img src="kdh.jpg" style="width: 150px; height: auto;"></td>
+				<td><img src="<%= request.getContextPath() %>/image/kdh.jpg" style="width: 150px; height: auto;"></td>
 			</tr>
 			<tr>
 				<td>¹éÁöÈÆ</td>
 				<td>rapper, actress</td>
-				<td><img src="bjh.jpg" style="width: 150px; height: auto;"></td>
+				<td><img src="<%= request.getContextPath() %>/image/bjh.jpg" style="width: 150px; height: auto;"></td>
 			</tr>
 			<tr>
 				<td>ÃÖ»ó¿í</td>
 				<td>singer</td>
-				<td><img src="csu.png" style="width: 150px; height: auto;"></td>
+				<td><img src="<%= request.getContextPath() %>/image/csu.png" style="width: 150px; height: auto;"></td>
 			</tr>
 			<tr>
 				<td>Áø°æ¼ö</td>
 				<td>comedian</td>
-				<td><img src="jks.png" style="width: 150px; height: auto;"></td>
+				<td><img src="<%= request.getContextPath() %>/image/jks.png" style="width: 150px; height: auto;"></td>
 			</tr>
 			<tr>
 				<td>±è±â¼º</td>
 				<td>anaunseo</td>
-				<td><img src="kks.jpg" style="width: 150px; height: auto;"></td>
+				<td><img src="<%= request.getContextPath() %>/image/kks.jpg" style="width: 150px; height: auto;"></td>
 			</tr>
 		</table>
 	</section>
-	
-	
 </body>
 </html>
