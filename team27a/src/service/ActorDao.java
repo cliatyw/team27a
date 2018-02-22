@@ -9,7 +9,8 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 public class ActorDao {
-
+	/*Actor Id,Name,Age를 모두 검색하여 조회하는 메소드로서,
+	Actor의 Id,Name,Age의 값을 담은 list 배열을 리턴한다.*/
 	public ArrayList<Actor> selectActorList() {
 		
 		ArrayList<Actor> list = new ArrayList<>();
@@ -56,6 +57,7 @@ public class ActorDao {
 	}
     /*Dao(Data Access Object) DB를 사용해 데이터를 조회하거나 조작하는 기능을 전담하도록 만든 기능이므로
 	insertActorAction.jsp이 아닌 ActorDao에 insert부분의 기능을 추가해야함*/
+	/*Actor의 Name, Age를 INSERT쿼리문을 이용하여 추가하는 메소드*/
 	public void insertActor(Actor actor) {
 		/*실행이 끝난후 데이터가 쌓이는것을 막기위해 finally를 이용해 close한다*/ 
 		Connection connection = null;
@@ -84,6 +86,7 @@ public class ActorDao {
 			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
 		}
 	}
+	/*매개변수가 int type인 actorId를 입력받아 해당 id의 쿼리문장을 DELETE을 이용하여 삭제하는 메소드*/
 	public void deleteActor(int actorId) {
 		/*실행이 끝난후 데이터가 쌓이는것을 막기위해 finally를 이용해 close한다*/ 
 		Connection connection = null;
@@ -109,6 +112,62 @@ public class ActorDao {
 		}
 	}
 	public Actor selectActorOne(int actorId) {
-		return null;
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultset = null;
+		Actor actor = new Actor();
+		/*드라이버로딩*/
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			String dbDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "SELECT actor_id AS actorId,actor_name AS actorName,actor_age AS actorAge FROM actor WHERE actor_id=?";
+						
+			connection = DriverManager.getConnection(dbDriver,dbUser,dbPass);
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, actorId);
+			resultset = statement.executeQuery();
+			
+			while(resultset.next()) {
+				actor.setActorId(Integer.parseInt(resultset.getString("actorId")));
+				actor.setActorName(resultset.getString("actorName"));
+				actor.setActorAge(Integer.parseInt(resultset.getString("actorAge")));
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+			if (resultset != null) try { resultset.close(); } catch(SQLException ex) {}
+		} return actor;
+	}
+	public void UpdateActor(Actor actor) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			String dbDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "UPDATE actor SET actor_id=?,actor_name=?,actor_age=? WHERE actor_id=?";
+						
+			connection = DriverManager.getConnection(dbDriver,dbUser,dbPass);
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, actor.getActorId());
+			statement.setString(2, actor.getActorName());
+			statement.setInt(3, actor.getActorAge());
+			statement.setInt(4, actor.getActorId());
+			statement.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
 	}
 }

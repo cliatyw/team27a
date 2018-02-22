@@ -17,7 +17,7 @@
 		ArrayList<Actor> list = actordao.selectActorList();
 		%>	
 		<h1>남배우 목록</h1>
-		<a href = "<%= request.getContextPath() %>/insertActorForm.jsp">등록</a>
+		<a href = "<%= request.getContextPath() %>/actor/insertActorForm.jsp">등록</a>
 		<table border="1">
 			<thead>
 				<tr>
@@ -36,14 +36,14 @@
 					<td><%= actor.getActorId() %></td>
 					<td><%= actor.getActorName() %></td>
 					<td><%= actor.getActorAge() %></td>
-					<td><a href = "<%= request.getContextPath() %>/updateActorForm.jsp?actorId=<%= actor.getActorId() %>">수정</a></td>
-					<td><a href = "<%= request.getContextPath() %>/deleteActorAction.jsp?actorId=<%= actor.getActorId() %>">삭제</a></td>
+					<td><a href = "<%= request.getContextPath() %>/actor/updateActorForm.jsp?actorId=<%= actor.getActorId() %>">수정</a></td>
+					<td><a href = "<%= request.getContextPath() %>/actor/deleteActorAction.jsp?actorId=<%= actor.getActorId() %>">삭제</a></td>
 				</tr>
 			</tbody>	
 			<%
 			}
 			%>
 		</table>
-		<a href = "index.jsp">홈으로</a>
+		<a href = "<%= request.getContextPath() %>/index.jsp">홈으로</a>
 	</body>
 </html>
