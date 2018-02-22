@@ -7,27 +7,22 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>insertActressAction.jsp</title>
+		<title> insertActressAction.jsp </title>
 	</head>
-		<body>
-			<%			
-				String actressName = request.getParameter("actressName");
-				int actressAge = Integer.parseInt(request.getParameter("actressAge"));
-				
-				System.out.println(actressName);
-				System.out.println(actressAge);
-				
-				Actress actress = new Actress();
-				
-				actress.setActressName(actressName);
-				actress.setActressAge(actressAge);
-				
-				ActressDao actressDao = new ActressDao();
-				actressDao.insertActress(actress);
-				
-				response.sendRedirect(request.getContextPath() + "/actressList.jsp");
-			%>
+	<body>
+		<%			
+		String actressName = request.getParameter("actressName");
+		int actressAge = Integer.parseInt(request.getParameter("actressAge"));
 			
-		</body>
+		Actress actress = new Actress();	
+		actress.setActressName(actressName);
+		actress.setActressAge(actressAge);
+				
+		ActressDao actressDao = new ActressDao();
+		actressDao.insertActress(actress);
+				
+		response.sendRedirect(request.getContextPath() + "/actressList.jsp");
+		%>	
+	</body>
 </html>
  

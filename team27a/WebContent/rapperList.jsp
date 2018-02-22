@@ -7,16 +7,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<title>rapperList</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<title> rapperList.jsp </title>
 	</head>
 	<body>
+		<%
+		RapperDao rapperDao = new RapperDao();
+		ArrayList<Rapper> arrayRapper = rapperDao.selectRapperList();
+		%>
 		<h1>래퍼 목록</h1>
 		<a href="<%= request.getContextPath() %>/insertRapperForm.jsp">등록</a>
-		<%
-			RapperDao rapperDao = new RapperDao();
-			ArrayList<Rapper> arrayRapper = rapperDao.selectRapperList();
-		%>
 		<table border="1">
 			<thead>
 				<tr>
@@ -31,15 +31,15 @@
 				<%
 				for (Rapper rapper : arrayRapper) {
 				%>
-				<tr>
-					<td><%=rapper.getRapperId()%></td>
-					<td><%=rapper.getRapperName()%></td>
-					<td><%=rapper.getRapperAge()%></td>
-					<td><a href="<%=request.getContextPath()%>/index.jsp">수정</a></td>
-					<td><a href="<%=request.getContextPath()%>/deleteRapperAction.jsp">삭제</a></td>
-				</tr>
+					<tr>
+						<td><%=rapper.getRapperId()%></td>
+						<td><%=rapper.getRapperName()%></td>
+						<td><%=rapper.getRapperAge()%></td>
+						<td><a href="<%=request.getContextPath()%>/index.jsp">수정</a></td>
+						<td><a href="<%=request.getContextPath()%>/deleteRapperAction.jsp">삭제</a></td>
+					</tr>
 				<%
-					}
+				}
 				%>
 			</tbody>
 		</table>

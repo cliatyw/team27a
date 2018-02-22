@@ -11,12 +11,12 @@
 		<title> actressList.jsp </title>
 	</head>
 	<body>
-		<h1>가수 목록</h1>	
-		<a href="<%=request.getContextPath()%>/insertActressForm.jsp">등록</a>
 		<%
 		ActressDao actressDao = new ActressDao();
 		ArrayList<Actress> arrayActress = actressDao.selectActressList();
 		%>
+		<h1>가수 목록</h1>	
+		<a href="<%=request.getContextPath()%>/insertActressForm.jsp">등록</a>
 		<table border="1">
 			<thead>
 				<tr>
@@ -25,8 +25,7 @@
 					<th>여배우 나이</th>
 					<th>수정</th>
 					<th>삭제</th>
-				</tr>
-				
+				</tr>				
 			</thead>
 			<tbody>
 				<%
@@ -38,8 +37,7 @@
 						<td><%=actress.getActressAge()%></td>
 						<td><a href="<%=request.getContextPath()%>/index.jsp">수정</a></td>
 						<td><a href="<%=request.getContextPath()%>/index.jsp">삭제</a></td>
-					</tr>
-			
+					</tr>			
 				<%
 				}
 				%>
