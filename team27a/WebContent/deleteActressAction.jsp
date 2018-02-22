@@ -1,6 +1,7 @@
 <!-- [¹éÁöÈÆ] -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@ page import = "service.ActressDao" %>
+<% request.setCharacterEncoding("eur-rk"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,6 +14,5 @@
 		actressDao.deleteActress(Integer.parseInt(request.getParameter("actress")));	
 		response.sendRedirect(request.getContextPath() + "/actressList.jsp");
 		%>
-	
 	</body>
 </html>

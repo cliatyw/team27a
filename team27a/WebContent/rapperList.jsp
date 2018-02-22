@@ -1,8 +1,8 @@
 <!-- [백지훈] -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%@ page import="service.RapperDao"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="service.Rapper"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
+<%@ page import="service.RapperDao" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="service.Rapper" %>
 <% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,7 @@
 					<td><%=rapper.getRapperName()%></td>
 					<td><%=rapper.getRapperAge()%></td>
 					<td><a href="<%=request.getContextPath()%>/index.jsp">수정</a></td>
-					<td><a href="<%=request.getContextPath()%>/index.jsp">삭제</a></td>
+					<td><a href="<%=request.getContextPath()%>/deleteRapperAction.jsp">삭제</a></td>
 				</tr>
 				<%
 					}

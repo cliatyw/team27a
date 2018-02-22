@@ -1,6 +1,7 @@
 <!-- [¹éÁöÈÆ] -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@ page import = "service.RapperDao" %>
+<% request.setCharacterEncoding("eur-rk"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,6 +14,5 @@
 		rapperDao.deleteRapper(Integer.parseInt(request.getParameter("rapperId")));
 		response.sendRedirect(request.getContextPath() + "/rapperList.jsp");
 		%>
-
 	</body>
 </html>

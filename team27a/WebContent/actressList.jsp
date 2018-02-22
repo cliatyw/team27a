@@ -1,22 +1,22 @@
 <!-- [백지훈] -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%@ page import="service.ActressDao"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="service.Actress"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
+<%@ page import="service.ActressDao" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="service.Actress" %>
 <% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>actressList.jsp</title>
+		<title> actressList.jsp </title>
 	</head>
-	<%
+	<body>
+		<h1>가수 목록</h1>	
+		<a href="<%=request.getContextPath()%>/insertActressForm.jsp">등록</a>
+		<%
 		ActressDao actressDao = new ActressDao();
 		ArrayList<Actress> arrayActress = actressDao.selectActressList();
-	%>
-	<body>
-		<h1>가수 목록</h1>
-		<a href="<%=request.getContextPath()%>/insertActressForm.jsp">등록</a>
+		%>
 		<table border="1">
 			<thead>
 				<tr>
