@@ -2,15 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@ page import = "service.Comedian" %>
 <%@ page import = "service.ComedianDao" %>
-<%
-	/*이거는 사용자가 입력한 데이터를 post방식으로 보내서 받을때 문자셋을 euc-kr로 받겠다는것!*/
-	request.setCharacterEncoding("euc-kr");
-%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>Insert title here</title>
+		<title>insertComedianAction.jsp</title>
 	</head>
 	<body>
 		<%
