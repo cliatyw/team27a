@@ -27,7 +27,7 @@ public class AnaunseoDao {
 			*/
 			Class.forName("com.mysql.jdbc.Driver");
 			//db연결
-			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
 			//ananunseo 테이블에 컬럼3개를 select한다
@@ -81,9 +81,10 @@ public class AnaunseoDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
+			//(아이디, 이름, 나이)를 insert하는 쿼리문
 			String sql = "INSERT INTO anaunseo VALUES (NULL, ?, ?)";
 			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
@@ -119,7 +120,7 @@ public class AnaunseoDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
 			String sql = "DELETE FROM anaunseo WHERE anaunseo_id=?";
@@ -156,7 +157,7 @@ public class AnaunseoDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
 			String sql = "SELECT anaunseo_id AS anaunseoId, anaunseo_name AS anaunseoName, anaunseo_age AS anaunseoAge FROM anaunseo WHERE anaunseo_id=?";
@@ -203,7 +204,7 @@ public class AnaunseoDao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
 			String sql = "UPDATE anaunseo SET anaunseo_name=?, anaunseo_age=? WHERE anaunseo_id=?";
