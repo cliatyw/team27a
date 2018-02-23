@@ -26,7 +26,7 @@ public class ActorDao {
 			String dbDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-			String sql = "SELECT actor_id as actorId,actor_name as actorName,actor_age as actorAge FROM actor ORDER BY actor_id";
+			String sql = "SELECT actor_id AS actorId,actor_name AS actorName,actor_age AS actorAge FROM actor ORDER BY actor_id ASC";
 				
 			connection = DriverManager.getConnection(dbDriver,dbUser,dbPass);
 			statement = connection.prepareStatement(sql);
