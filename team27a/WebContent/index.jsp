@@ -11,6 +11,15 @@
 		<header>
 			<h1 align="center">team27a</h1>
 		</header>
+		<%if(session.getAttribute("memberId") == null) {%>
+		<form action="<%= request.getContextPath() %>/login/login.jsp" method="post" align="center">
+			아이디 : 
+			<input type="text" name="memberId">
+			비밀번호 : 
+			<input type="text" name="memberPw">
+			<input type="submit" value="로그인">
+		</form>
+		<% } %>
 		<table border="1" style="width: 50%" align="center">
 			<thead>
 				<tr>

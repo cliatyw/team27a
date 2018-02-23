@@ -52,6 +52,7 @@ public class ComedianDao {
 		return comedian;
 	}
 	
+	/*업데이트를 하기 위한 메서드*/
 	public void updateComedian(Comedian comedian) {
 		/*기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을 하게되면지역변수로 
 		 * 선언이되어서 finally절에서 colose를 하지 못하기때문에try절 밖에서 선언을 해준다.
@@ -67,7 +68,7 @@ public class ComedianDao {
 			String dbPass = "java0000";
 			
 			/*특정행만 업데이트를 하기위해 comedian_id를 조건절로 주었다.*/
-			String sql = "UPDATE comedian SET comedian_name = ?, comedian_age = ? where comedian_id = ?";
+			String sql = "UPDATE comedian SET comedian_name = ?, comedian_age = ? WHERE comedian_id = ?";
 			/*db 접속을 받는 부분. 커넥션을 받는다!*/
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			statement = connection.prepareStatement(sql);
@@ -88,6 +89,7 @@ public class ComedianDao {
 		}
 	}
 	
+	/*삭제 하기 위한 메서드*/
 	public void deleteComedian(int comedianId) {
 		/*기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을 하게되면지역변수로 
 		 * 선언이되어서 finally절에서 colose를 하지 못하기때문에try절 밖에서 선언을 해준다.
@@ -122,6 +124,7 @@ public class ComedianDao {
 		}
 	}
 	
+	/*코메디언을 추가 하기 위한 메서드*/
 	public void insertComedian(Comedian comedian) {
 		/*기본적인 객체참조변수 선언, 만약 try절 안에서 변수 선언을 하게되면지역변수로 
 		 * 선언이되어서 finally절에서 colose를 하지 못하기때문에try절 밖에서 선언을 해준다.
