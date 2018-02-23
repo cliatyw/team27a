@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title> insertActressForm.jsp </title>
+		<title> updateActressForm.jsp </title>
 	</head>
 	<body>
 		<%

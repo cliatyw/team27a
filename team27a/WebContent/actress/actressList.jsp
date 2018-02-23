@@ -15,7 +15,7 @@
 		ActressDao actressDao = new ActressDao();
 		ArrayList<Actress> arrayActress = actressDao.selectActressList();
 		%>
-		<h1>가수 목록</h1>	
+		<h1>여배우 목록</h1>	
 		<a href="<%=request.getContextPath()%>/actress/insertActressForm.jsp">등록</a>
 		<table border="1">
 			<thead>

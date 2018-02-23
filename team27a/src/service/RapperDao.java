@@ -8,13 +8,70 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Connection;
 public class RapperDao {
-	/*
-	 * default생성자 이긴 한데, public안해주면 
-	 * not visible상태가 되기 때문에 호출 할 수 없다. 
-	 * 따라서 public만 붙여서 선언해준다.
-	 */
-	public RapperDao() {}
+	public Rapper selectRapperOne(int rapperId) {
+		Rapper rapper = new Rapper();
+		PreparedStatement statement = null;
+		Connection connection = null;
+		ResultSet resultSet = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver"); // 드라이버로딩
+			// DB연결
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "SELECT rapper_id AS rapperId, rapper_name AS rapperName, rapper_age AS rapperAge FROM rapper WHERE rapper_id=?";
+			
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, rapperId);
+			resultSet = statement.executeQuery();
+			
+			resultSet.next();
+			rapper.setRapperId(rapperId);
+			rapper.setRapperName(resultSet.getString("rapperName"));
+			rapper.setRapperAge(resultSet.getInt("rapperAge"));
+			
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+			if(statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if(connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+		return rapper;
+	}
 	
+	public void updateRapper(Rapper rapper) {
+		PreparedStatement statement = null;
+		Connection connection = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver"); // 드라이버로딩
+			// DB연결
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "UPDATE rapper SET rapper_name = ?, rapper_age = ? WHERE rapper_id = ?"; // 특정행만 업데이트 하기 위해 조건은 rapper_id로 함.
+			// DB접속받는부분 커넥션!
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			// 데이터 넣기
+			statement.setString(1, rapper.getRapperName());
+			statement.setInt(2, rapper.getRapperAge());
+			statement.setInt(3, rapper.getRapperId());
+			statement.executeUpdate(); // 쿼리실행
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if(connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+	}
 	public void deleteRapper(int rapperId) {
 		
 		Connection connection = null;

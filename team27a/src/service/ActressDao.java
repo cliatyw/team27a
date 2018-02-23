@@ -9,14 +9,7 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 public class ActressDao {
-	
-	/*
-	 * default생성자 이긴 한데, public안해주면 
-	 * not visible상태가 되기 때문에 호출 할 수 없다. 
-	 * 따라서 public만 붙여서 선언해준다.
-	 */
-	public ActressDao() {}
-	
+	//아이디값을 받아 한개만 이름과 나이를 Actress 클래스에 세팅하여 actress를 리턴하는 매서드
 	public Actress selectActressOne(int actressId) {
 		Actress actress = new Actress();
 		PreparedStatement statement = null;
@@ -29,12 +22,12 @@ public class ActressDao {
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-			String sql = "SELECT actress_id AS actressId, actress_name AS actressName, actress_age AS actressAge FROM actress where actressId = ?";
+			String sql = "SELECT actress_id AS actressId, actress_name AS actressName, actress_age AS actressAge FROM actress WHERE actress_id = ?";
 			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, actressId);
-			resultSet = statement.executeQuery(sql);
+			resultSet = statement.executeQuery();
 			
 			resultSet.next();
 			actress.setActressId(actressId);
