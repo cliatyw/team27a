@@ -28,7 +28,11 @@ public class ActressDao {
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, actressId);
 			resultSet = statement.executeQuery();
+			/*executeQuery는 쿼리결과를 ResultSet을 얻기 위한 메소드로 주로 SELECT문에 
+			사용되며 ,executeUpdate는 쿼리문으로 데이터를 다루는 INSERT, UPDATE,
+			DELETE문이나 테이블을 다루는 CREATAE, DROP, ALTER에 사용*/
 			
+			// 하나의 행만 출력되기때문에 while문을 작성하지 않음.
 			resultSet.next();
 			actress.setActressId(actressId);
 			actress.setActressName(resultSet.getString("actressName"));
@@ -47,6 +51,7 @@ public class ActressDao {
 	}
 	
 	public void updateActress(Actress actress) {
+		/* 객체참조변수 선언, try절 안에서 변수선언을 하면 지역변수로 선언되기때문에 finally에서 close()를 못하므로 try절 밖에서 선언*/
 		PreparedStatement statement = null;
 		Connection connection = null;
 		
@@ -76,22 +81,22 @@ public class ActressDao {
 	}
 	
 	public void deleteActress(int actressId) {
-		
+		/* 객체참조변수 선언, try절 안에서 변수선언을 하면 지역변수로 선언되기때문에 finally에서 close()를 못하므로 try절 밖에서 선언*/
 		Connection connection = null;
 		PreparedStatement statement = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver"); 
-			
+			Class.forName("com.mysql.jdbc.Driver"); // 드라이버로딩
+			// DB연결
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
 			String sql = "DELETE FROM actress WHERE actress_id=?";
-			
+			//DB접속받는부분에 커넥션을 받는다.
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			statement = connection.prepareStatement(sql);
-			statement.setInt(1, actressId);
-			statement.executeUpdate();
+			statement.setInt(1, actressId); // 데이터넣기
+			statement.executeUpdate(); // 쿼리실행
 			
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
@@ -102,17 +107,13 @@ public class ActressDao {
 			if(connection != null) try { connection.close(); } catch(SQLException ex) {} 
 		}
 }
-		
-	
-	
 	public void insertActress(Actress actress) {
-		/*실행이 끝난후 데이터가 쌓이는것을 막기위해 finally를 이용해 close한다*/ 
+		/* 객체참조변수 선언, try절 안에서 변수선언을 하면 지역변수로 선언되기때문에 finally에서 close()를 못하므로 try절 밖에서 선언*/
 		Connection connection = null;
 		PreparedStatement statement = null;
-		/*드라이버로딩*/
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			/*DB연결*/
+			Class.forName("com.mysql.jdbc.Driver"); // 드라이버로딩
+			// DB연결
 			String dbDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
@@ -125,7 +126,7 @@ public class ActressDao {
 			/*executeQuery는 쿼리결과를 ResultSet을 얻기 위한 메소드로 주로 SELECT문에 
 			사용되며 ,executeUpdate는 쿼리문으로 데이터를 다루는 INSERT, UPDATE,
 			DELETE문이나 테이블을 다루는 CREATAE, DROP, ALTER에 사용*/
-			statement.executeUpdate();			
+			statement.executeUpdate(); // 쿼리실행			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -133,42 +134,36 @@ public class ActressDao {
 			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
 		}
 	} 
-	
-	
 	/*
 	 * select 한 후 리턴값으로 Comedian.class의 배열이나 List 받아야 한다.
 	 * 배열이나, ArrayList, HashMap을 사용할 수 있다.
 	 * ArrayList를 지금 사용해보고, HashMap도 테스트 해볼것.
 	 */
 	public ArrayList<Actress> selectActressList() {
-		//기본적인 객체참조변수 선언.
+		/* 객체참조변수 선언, try절 안에서 변수선언을 하면 지역변수로 선언되기때문에 finally에서 close()를 못하므로 try절 밖에서 선언*/
 		ArrayList<Actress> list = new ArrayList<Actress>();
-		
-		// finally절에서 close....
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		Connection connection = null;
 		
 		try {
-			//db접속을 위한 id,pw,주소 설정 코드인데, root관리자로 접속하라는 코드여서, 새로운 user를 추가하는것을 고려해야하지않을까?
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver"); // 드라이버로딩
+			// DB접속
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-			// 별명
 			String sql = "SELECT actress_id AS actressId, actress_name AS actressName,actress_age AS actressAge FROM actress";
 			//db 접속을 받는 부분. 커넥션을 받는다!
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			statement = connection.prepareStatement(sql);
-			//select 시에는 executeQuery를 실행하여, ResultSet을 리턴값으로 받는다.
-			//update, delete, insert같은 경우는 executeUpdate다~
+			//select 시에는 executeQuery를 실행하여, ResultSet을 리턴값으로 받음
+			//update, delete, insert같은 경우는 executeUpdate
 			resultSet = statement.executeQuery();
 			
-			//여기에서 객체를 생성하는 이유는 SQLException , ClassNotFoundException 같은 예외처리부분에서 에러가 날경우에는 객체생성 안하기 위해~
+			//여기에서 객체를 생성하는 이유는 SQLException , ClassNotFoundException 같은 예외처리부분에서 에러가 날경우에는 객체생성 안하기위함.
 			while(resultSet.next()){
 				Actress actress = new Actress();
 	
-				//내가 INT형 해놔서 Integer클래스의 parseInt메서드를
 				actress.setActressId(resultSet.getInt("actressId"));  
 				actress.setActressName(resultSet.getString("actressName"));
 				actress.setActressAge(resultSet.getInt("actressAge"));  
@@ -176,9 +171,9 @@ public class ActressDao {
 			}
 			// 단위테스트
 				System.out.println(list.size()+"7");
-			} catch(ClassNotFoundException e) { // Class.forName()
+			} catch(ClassNotFoundException e) { 
 				e.printStackTrace();
-			} catch(SQLException e) { // JDBC
+			} catch(SQLException e) { 
 				e.printStackTrace();
 			} finally {
 				if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
