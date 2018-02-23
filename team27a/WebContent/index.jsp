@@ -18,8 +18,16 @@
 			비밀번호 : 
 			<input type="text" name="memberPw">
 			<input type="submit" value="로그인">
+			<a href="<%= request.getContextPath() %>/member/insertMemberForm.jsp">회원가입</a>
 		</form>
-		<% } %>
+		<% 
+		} else{
+		%>
+			<a href="<%= request.getContextPath() %>/member/memberList.jsp">멤버 보기</a>
+			<a href="<%= request.getContextPath() %>/login/logout.jsp">로그아웃</a>
+		<%
+		}
+		%>
 		<table border="1" style="width: 50%" align="center">
 			<thead>
 				<tr>

@@ -14,7 +14,32 @@
 		<%
 		SingerDao singerdao = new SingerDao();
 		ArrayList<Singer> list = singerdao.selectSingerList();
+		if(session.getAttribute("memberId") == null){	
 		%>
+		
+		<h1>가수 목록</h1>
+		<table border = "1">
+			<thead>
+				<tr>
+					<th>가수 순서</th>
+					<th>가수 이름</th>
+					<th>가수 나이</th>
+				</tr>
+			</thead>	
+			<tbody>			
+				<%				
+				for(Singer singer : list){			
+				%>
+					<tr>
+						<td><%= singer.getSingerId() %></td>
+						<td><%= singer.getSingerName() %></td>
+						<td><%= singer.getSingerAge() %></td>
+					</tr>
+				<%		
+				}
+		} else {
+		%>	
+		
 		<h1>가수 목록</h1>
 		<a href = "<%= request.getContextPath() %>/singer/insertSingerForm.jsp">등록</a>
 		<table border = "1">
@@ -28,6 +53,7 @@
 				</tr>
 			</thead>	
 			<tbody>			
+				
 				<%				
 				for(Singer singer : list){			
 				%>
@@ -37,11 +63,14 @@
 						<td><%= singer.getSingerAge() %></td>
 						<td><a href = "<%= request.getContextPath() %>/singer/updateSingerForm.jsp?singerId=<%= singer.getSingerId() %>">수정</a></td>
 						<td><a href = "<%= request.getContextPath() %>/singer/deleteSingerAction.jsp?singerId=<%= singer.getSingerId() %>">삭제</a></td>
-					</tr>
-				<%		
-				}
-				%>	
+					</tr>	
 			</tbody>		
+		
+			<% 
+				}
+			}
+			%>
+				
 		</table>
 		<a href = "<%= request.getContextPath() %>/index.jsp">홈으로</a>
 	</body>
