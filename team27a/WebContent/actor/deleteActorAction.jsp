@@ -12,6 +12,7 @@
 		<%		
 		ActorDao actordao = new ActorDao();
 		actordao.deleteActor(Integer.parseInt(request.getParameter("actorId")));
+		//actorList화면으로 넘어간다
 		response.sendRedirect(request.getContextPath()+"/actor/actorList.jsp");
 		%>
 	</body>

@@ -11,13 +11,14 @@
 	</head>
 	<body>
 		<%	
-		//화면에서 받아온 값을 dto인 actor에 값을 세팅해준다
+		//화면에서 받아온 값을 세팅해준다
 		Actor actor = new Actor();
 		actor.setActorName(request.getParameter("actorName"));
 		actor.setActorAge(Integer.parseInt(request.getParameter("actorAge")));
 		
 		ActorDao actorDao = new ActorDao();
 		actorDao.insertActor(actor);
+		//actorList 화면으로 넘어간다
 		response.sendRedirect(request.getContextPath()+"/actor/actorList.jsp");
 		%>
 	</body>
