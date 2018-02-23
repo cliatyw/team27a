@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<%		
-		/* 받아온 Id,Name,Age의 값을 세팅해준다 */
+		//받아온 Id,Name,Age의 값을 세팅해준다 
 		Actor actor = new Actor();
 		actor.setActorId(Integer.parseInt(request.getParameter("actorId")));
 		actor.setActorName(request.getParameter("actorName"));
@@ -19,7 +19,7 @@
 		
 		ActorDao actordao = new ActorDao();
 		actordao.updateActor(actor);
-		
+		//actorList화면으로 넘어간다
 		response.sendRedirect(request.getContextPath()+"/actor/actorList.jsp");
 		%>
 	</body>
