@@ -9,14 +9,9 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 public class ComedianDao {
-	/*default생성자 이긴 한데, public안해주면 not visible
-	 * 상태가 되기 때문에 호출 할 수 없다. 
-	 * 따라서 public만 붙여서 선언해준다.
-	 * */
-	public ComedianDao() {}
 
 	/*업데이트를 하기 위해 select 해서 회원정보 불러오게 하는 메서드*/
-	public Comedian selectForUpdateComedian(int comedianId) {
+	public Comedian selectComedianOne(int comedianId) {
 		Comedian comedian = new Comedian();
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
@@ -28,12 +23,13 @@ public class ComedianDao {
 			String dbUser = "root";
 			String dbPass = "java0000";
 			/*어차피 하나의 행만 출력되기 때문에, order by 절은 사용하지 않았다.*/
-			String sql = "SELECT comedian_id AS comedianId, comedian_name AS comedianName, comedian AS comedianAge FROM comedian where comedianId = ?";
+			String sql = "SELECT comedian_id AS comedianId, comedian_name AS comedianName, comedian_age AS comedianAge FROM comedian WHERE comedian_id = ?";
 			
 			connection = DriverManager.getConnection(jdbcDriver,dbUser,dbPass);
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1,comedianId);
-			resultSet = statement.executeQuery(sql);
+			System.out.println(statement);
+			resultSet = statement.executeQuery();
 			
 			/*어차피 하나의 행만 출력되어서 while문을 사용하지 않았다.*/
 			resultSet.next();

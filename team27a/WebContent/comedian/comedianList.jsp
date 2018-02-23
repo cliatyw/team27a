@@ -43,6 +43,6 @@
 				%>
 			</tbody>
 		</table>
-		<a href="index.jsp">홈으로</a>
+		<a href="<%= request.getContextPath() %>/index.jsp">홈으로</a>
 	</body>
 </html>
