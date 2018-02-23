@@ -14,16 +14,30 @@
 		<%
 		SingerDao singerdao = new SingerDao();
 		ArrayList<Singer> list = singerdao.selectSingerList();
-		if(session.getAttribute("memberId") == null){	
 		%>
-		
 		<h1>가수 목록</h1>
+		<%
+		if(session.getAttribute("memberId") != null){	
+		%>
+			<a href = "<%= request.getContextPath() %>/singer/insertSingerForm.jsp">등록</a>
+		<%
+		}
+		%>
 		<table border = "1">
 			<thead>
 				<tr>
 					<th>가수 순서</th>
 					<th>가수 이름</th>
 					<th>가수 나이</th>
+					<%
+					//session에 아이디값이 있다면 수정 삭제 테이블 제목 활성화
+					if(session.getAttribute("memberId") != null){
+					%>
+						<th>수정</th>
+						<th>삭제</th>
+					<%
+					}
+					%>
 				</tr>
 			</thead>	
 			<tbody>			
@@ -34,44 +48,21 @@
 						<td><%= singer.getSingerId() %></td>
 						<td><%= singer.getSingerName() %></td>
 						<td><%= singer.getSingerAge() %></td>
-					</tr>
-				<%		
-				}
-		} else {
-		%>	
-		
-		<h1>가수 목록</h1>
-		<a href = "<%= request.getContextPath() %>/singer/insertSingerForm.jsp">등록</a>
-		<table border = "1">
-			<thead>
-				<tr>
-					<th>가수 순서</th>
-					<th>가수 이름</th>
-					<th>가수 나이</th>
-					<th>수정</th>
-					<th>삭제</th>
-				</tr>
-			</thead>	
-			<tbody>			
-				
-				<%				
-				for(Singer singer : list){			
-				%>
-					<tr>
-						<td><%= singer.getSingerId() %></td>
-						<td><%= singer.getSingerName() %></td>
-						<td><%= singer.getSingerAge() %></td>
+						<%
+						//session에 아이디값이 있다면 수정, 삭제버튼 활성화
+						if(session.getAttribute("memberId") != null){
+						%>
 						<td><a href = "<%= request.getContextPath() %>/singer/updateSingerForm.jsp?singerId=<%= singer.getSingerId() %>">수정</a></td>
 						<td><a href = "<%= request.getContextPath() %>/singer/deleteSingerAction.jsp?singerId=<%= singer.getSingerId() %>">삭제</a></td>
-					</tr>	
-			</tbody>		
-		
-			<% 
+						<%
+						}
+						%>
+					</tr>
+				<%
 				}
-			}
-			%>
-				
+				%>
+			</tbody>
 		</table>
-		<a href = "<%= request.getContextPath() %>/index.jsp">홈으로</a>
+		<a href="<%= request.getContextPath() %>/index.jsp">홈으로</a>
 	</body>
 </html>
