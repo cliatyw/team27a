@@ -11,14 +11,12 @@
 	<body>
 		<%
 		Member member = new Member();
+		member.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
 		member.setMemberId(request.getParameter("memberId"));
 		member.setMemberPw(request.getParameter("memberPw"));
 		MemberDao memberDao = new MemberDao();
-		String result = memberDao.loginMember(member);
-		if( result != null && result.equals("ÀÏÄ¡") ){
-			session.setAttribute("memberId", member.getMemberId());
-		}
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		memberDao.updateMember(member);
+		response.sendRedirect(request.getContextPath() + "/member/memberList.jsp");
 		%>
 	</body>
 </html>
