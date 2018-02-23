@@ -35,7 +35,7 @@
 						<td><%=actress.getActressId()%></td>
 						<td><%=actress.getActressName()%></td>
 						<td><%=actress.getActressAge()%></td>
-						<td><a href="<%=request.getContextPath()%>/index.jsp">수정</a></td>
+						<td><a href="<%=request.getContextPath()%>/actress/updateActressForm.jsp?actressId=<%= actress.getActressId() %>">수정</a></td>
 						<td><a href="<%=request.getContextPath()%>/actress/deleteActressAction.jsp?actressId=<%= actress.getActressId() %>">삭제</a></td>
 					</tr>			
 				<%

@@ -15,7 +15,71 @@ public class ActressDao {
 	 * not visible상태가 되기 때문에 호출 할 수 없다. 
 	 * 따라서 public만 붙여서 선언해준다.
 	 */
-	public ActressDao() {
+	public ActressDao() {}
+	
+	public Actress selectActressOne(int actressId) {
+		Actress actress = new Actress();
+		PreparedStatement statement = null;
+		Connection connection = null;
+		ResultSet resultSet = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver"); //드라이버로딩
+			// DB연결
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "SELECT actress_id AS actressId, actress_name AS actressName, actress_age AS actressAge FROM actress where actressId = ?";
+			
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, actressId);
+			resultSet = statement.executeQuery(sql);
+			
+			resultSet.next();
+			actress.setActressId(actressId);
+			actress.setActressName(resultSet.getString("actressName"));
+			actress.setActressAge(resultSet.getInt("actressAge"));
+
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+			if(statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if(connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
+		return actress;
+	}
+	
+	public void updateActress(Actress actress) {
+		PreparedStatement statement = null;
+		Connection connection = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");// 드라이버로딩
+			// DB연결
+			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+			String dbUser = "root";
+			String dbPass = "java0000";
+			String sql = "UPDATE actress SET actress_name = ?, actress_age = ? WHERE actress_id = ?"; // 특정행만 업데이트 하기위해 조건을 actress_id로 함.
+			// DB접속받는부분에 커넥션을 받는다.
+			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+			statement = connection.prepareStatement(sql);
+			// 데이터 넣기
+			statement.setString(1, actress.getActressName());
+			statement.setInt(2, actress.getActressAge());
+			statement.setInt(3, actress.getActressId());
+			statement.executeUpdate(); // 쿼리실행
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(statement != null) try { statement.close(); } catch(SQLException ex) {}
+			if(connection != null) try { connection.close(); } catch(SQLException ex) {}
+		}
 	}
 	
 	public void deleteActress(int actressId) {
