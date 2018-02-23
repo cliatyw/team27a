@@ -20,7 +20,7 @@ public class MemberDao {
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-			String sql = "SELECT member_id AS memberId, member_pw AS memberPw FROM member where member_id = ? and member_pw = ?";
+			String sql = "SELECT member_id AS memberId, member_pw AS memberPw FROM member WHERE member_id = ? and member_pw = ?";
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, member.getMemberId());

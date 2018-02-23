@@ -16,15 +16,19 @@
 		ArrayList<Comedian> list = comedianDao.selectComedianList();
 		%>
 		<h1>코메디언 목록</h1>
-		<a href="<%= request.getContextPath() %>/comedian/insertComedianForm.jsp">등록</a>
+		<% if(session.getAttribute("memberId") != null){ %>
+			<a href="<%= request.getContextPath() %>/comedian/insertComedianForm.jsp">등록</a>
+		<% } %>
 		<table border="1">
 			<thead>
 				<tr>
 					<th>코메디언 순서</th>
 					<th>코메디언 이름</th>
 					<th>코메디언 나이</th>
-					<th>수정</th>
-					<th>삭제</th>
+					<% if(session.getAttribute("memberId") != null){ %>
+						<th>수정</th>
+						<th>삭제</th>
+					<% } %>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,8 +39,10 @@
 						<td><%= comedian.getComedianId() %></td>
 						<td><%= comedian.getComedianName() %></td>
 						<td><%= comedian.getComedianAge() %></td>
-						<td><a href="<%= request.getContextPath() %>/comedian/updateComedianForm.jsp?comedianId=<%= comedian.getComedianId() %>">수정</a></td>
-						<td><a href="<%= request.getContextPath() %>/comedian/deleteComedianAction.jsp?comedianId=<%= comedian.getComedianId() %>">삭제</a></td>
+						<% if(session.getAttribute("memberId") != null){ %>
+							<td><a href="<%= request.getContextPath() %>/comedian/updateComedianForm.jsp?comedianId=<%= comedian.getComedianId() %>">수정</a></td>
+							<td><a href="<%= request.getContextPath() %>/comedian/deleteComedianAction.jsp?comedianId=<%= comedian.getComedianId() %>">삭제</a></td>
+						<% } %>
 					</tr>
 				<%
 				}
