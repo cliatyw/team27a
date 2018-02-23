@@ -16,15 +16,19 @@
 		ArrayList<Rapper> arrayRapper = rapperDao.selectRapperList();
 		%>
 		<h1>래퍼 목록</h1>
-		<a href="<%= request.getContextPath() %>/rapper/insertRapperForm.jsp">등록</a>
+		<% if(session.getAttribute("memberId") != null) { %>
+			<a href="<%= request.getContextPath() %>/rapper/insertRapperForm.jsp">등록</a>
+		<% } %>	
 		<table border="1">
 			<thead>
 				<tr>
 					<th>래퍼 순서</th>
 					<th>래퍼 이름</th>
 					<th>래퍼 나이</th>
-					<th>수정</th>
-					<th>삭제</th>
+					<% if(session.getAttribute("memberId") != null){ %>
+						<th>수정</th>
+						<th>삭제</th>
+					<% } %>
 				</tr>
 			</thead>
 			<tbody>	
@@ -35,8 +39,10 @@
 						<td><%=rapper.getRapperId()%></td>
 						<td><%=rapper.getRapperName()%></td>
 						<td><%=rapper.getRapperAge()%></td>
-						<td><a href="<%=request.getContextPath()%>/rapper/updateRapperForm.jsp?rapperId=<%= rapper.getRapperId() %>">수정</a></td>
-						<td><a href="<%=request.getContextPath()%>/rapper/deleteRapperAction.jsp?rapperId=<%= rapper.getRapperId() %>">삭제</a></td>
+						<% if(session.getAttribute("memberId") != null){ %>
+							<td><a href="<%=request.getContextPath()%>/rapper/updateRapperForm.jsp?rapperId=<%= rapper.getRapperId() %>">수정</a></td>
+							<td><a href="<%=request.getContextPath()%>/rapper/deleteRapperAction.jsp?rapperId=<%= rapper.getRapperId() %>">삭제</a></td>
+						<% } %>
 						
 					</tr>
 				<%

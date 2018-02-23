@@ -15,16 +15,20 @@
 		ActressDao actressDao = new ActressDao();
 		ArrayList<Actress> arrayActress = actressDao.selectActressList();
 		%>
-		<h1>여배우 목록</h1>	
-		<a href="<%=request.getContextPath()%>/actress/insertActressForm.jsp">등록</a>
+		<h1>여배우 목록</h1>
+		<% if(session.getAttribute("memberId") != null){ %>	
+			<a href="<%=request.getContextPath()%>/actress/insertActressForm.jsp">등록</a>
+		<% } %>	
 		<table border="1">
 			<thead>
 				<tr>
 					<th>여배우 순서</th>
 					<th>여배우 이름</th>
 					<th>여배우 나이</th>
-					<th>수정</th>
-					<th>삭제</th>
+					<% if(session.getAttribute("memberId")!= null){ %>
+						<th>수정</th>
+						<th>삭제</th>
+					<% } %>
 				</tr>				
 			</thead>
 			<tbody>
@@ -35,8 +39,10 @@
 						<td><%=actress.getActressId()%></td>
 						<td><%=actress.getActressName()%></td>
 						<td><%=actress.getActressAge()%></td>
-						<td><a href="<%=request.getContextPath()%>/actress/updateActressForm.jsp?actressId=<%= actress.getActressId() %>">수정</a></td>
-						<td><a href="<%=request.getContextPath()%>/actress/deleteActressAction.jsp?actressId=<%= actress.getActressId() %>">삭제</a></td>
+						<% if(session.getAttribute("memberId") != null){ %>
+							<td><a href="<%=request.getContextPath()%>/actress/updateActressForm.jsp?actressId=<%= actress.getActressId() %>">수정</a></td>
+							<td><a href="<%=request.getContextPath()%>/actress/deleteActressAction.jsp?actressId=<%= actress.getActressId() %>">삭제</a></td>
+						<% } %>
 					</tr>			
 				<%
 				}
