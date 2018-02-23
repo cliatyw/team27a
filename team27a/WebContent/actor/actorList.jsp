@@ -54,6 +54,7 @@
 				<%
 				if (session.getAttribute("memberId") != null) {
 				%>
+	
 					<td><a href = "<%= request.getContextPath() %>/actor/updateActorForm.jsp?actorId=<%= actor.getActorId() %>">수정</a></td>
 					<td><a href = "<%= request.getContextPath() %>/actor/deleteActorAction.jsp?actorId=<%= actor.getActorId() %>">삭제</a></td>
 				<%
