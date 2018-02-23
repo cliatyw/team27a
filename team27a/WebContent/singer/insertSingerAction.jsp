@@ -1,5 +1,4 @@
-
-<!-- 최 -->
+<!-- 최상욱 -->
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@ page import="service.SingerDao" %>
 <%@ page import="service.Singer" %>

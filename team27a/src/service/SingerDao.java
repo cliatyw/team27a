@@ -13,13 +13,11 @@ public class SingerDao {
 	public ArrayList<Singer> selectSingerList(){
 		//객체참조변수 선언.
 		ArrayList<Singer> list = new ArrayList<Singer>();
-		
 		// finally절에서 colse....
 		PreparedStatement statement = null;
 		ResultSet rs = null;
 		Connection connection = null;
 		try {
-			
 			//드라이버 로딩 후 db접속을 위해 포트번호, db명 아이디 비밀번호 ip값을 적어준다.
 			Class.forName("com.mysql.jdbc.Driver");
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
@@ -27,6 +25,7 @@ public class SingerDao {
 			String dbPass = "java0000";
 			String sql = "SELECT singer_id AS singerId, singer_name AS singerName,singer_age AS singerAge FROM singer ORDER BY singer_id ASC";
 			//db 접속을 받는 부분. 커넥션을 받는다!
+			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);			
 			//쿼리 문장 실행.
 			statement = connection.prepareStatement(sql);
@@ -40,11 +39,7 @@ public class SingerDao {
 				singer.setSingerAge(rs.getInt("singerAge"));
 				list.add(singer);
 			}
-			// 단위테스트
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
 			if (rs != null)	try {rs.close();} catch (SQLException ex) {}
@@ -67,8 +62,6 @@ public class SingerDao {
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-
-			//쿼리 실행 문장.INSERT INTO singer VALUES (?, ?, ?)
 			String sql = "INSERT INTO singer VALUES (NULL, ?, ?)";		
 	
 			//db 접속을 받는 부분. 커넥션을 받는다!
@@ -81,9 +74,7 @@ public class SingerDao {
 			
 			////select 시에는 executeQuery를 실행하지만 update, delete, insert같은 경우는 executeUpdate다~
 			statement.executeUpdate();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
 			//닫기
@@ -101,14 +92,13 @@ public class SingerDao {
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-			String sql = " DELETE FROM singer WHERE singer_id = ? ";
+			String sql = " DELETE FROM singer WHERE singer_id =?";
+			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);	
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, singerId);
 			statement.executeUpdate();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
 			//닫기
@@ -127,7 +117,7 @@ public class SingerDao {
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
-			String sql = " SELECT singer_id AS singerId, singer_name AS singerName,singer_age AS singerAge FROM singer WHERE singer_id=? ";
+			String sql = "SELECT singer_id AS singerId, singer_name AS singerName,singer_age AS singerAge FROM singer WHERE singer_id=?";
 			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);	
 			statement = connection.prepareStatement(sql);
@@ -140,9 +130,7 @@ public class SingerDao {
 				singer.setSingerName(rs.getString("singerName"));
 				singer.setSingerAge(rs.getInt("singerAge"));
 			}
-		}catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
 			if (statement != null)try {statement.close();	} catch (SQLException ex) {}
@@ -170,9 +158,7 @@ public class SingerDao {
 			statement.setInt(2, singer.getSingerAge());
 			statement.setInt(3, singer.getSingerId());
 			statement.executeUpdate();
-		}catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
 			if (statement != null)try {statement.close();	} catch (SQLException ex) {}
