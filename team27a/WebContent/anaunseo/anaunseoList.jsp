@@ -13,8 +13,8 @@
 	<body>
 		<%
 		AnaunseoDao anaunseoDao = new AnaunseoDao();
-		ArrayList<Anaunseo> list = anaunseoDao.selectAnaunseoList();
 		//매서드 실행 후 리턴값을 배열에 대입
+		ArrayList<Anaunseo> list = anaunseoDao.selectAnaunseoList();
 		%>
 		<h1>아나운서 목록</h1>
 		<a href="<%= request.getContextPath() %>/anaunseo/insertAnaunseoForm.jsp">등록</a>

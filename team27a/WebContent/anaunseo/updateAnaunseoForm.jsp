@@ -18,6 +18,7 @@
 		%>
 		<h1>수정 화면</h1>
 		<form action="<%= request.getContextPath() %>/anaunseo/updateAnaunseoAction.jsp" method="post">
+			<!-- 화면에 표시하지 않고 아이디값을 updateAnaunseoAction으로 넘기기 위해 hidden을 사용하였다. -->
 			<input type ="hidden" name="anaunseoId" value=<%= anaunseo.getAnaunseoId() %>>
 			<table border="1">
 				<tr>

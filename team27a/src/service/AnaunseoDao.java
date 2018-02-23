@@ -9,39 +9,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AnaunseoDao {
-	//Dao에 쓰는 변수들을 전역변수로 한번에 처리
-	Connection connection = null;
-	ResultSet resultSet = null;
-	PreparedStatement preparedStatement = null;
 	//목록을 보여주는 매서드 ArrayList<Anaunseo>로 리턴값을 받는다.
 	public ArrayList<Anaunseo> selectAnaunseoList() {
 		//collection 은 대표형태로 참조변수명을 설정하면 된다. ex) ArrayList -> list
 		//변수명을 한번에 고치기 위해선 마우스 오른쪽 refactor rename으로 가서 한번에 고칠수있다. 단축기 : alt shift R
 		ArrayList<Anaunseo> list = new ArrayList<Anaunseo>();
+		Connection connection = null;
+		ResultSet resultSet = null;
+		PreparedStatement preparedStatement = null;
 		//finally절에서 변수를 닫을 것이다.
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
 			/*드라이버 로딩
 			 *주스는 정확히 쳐야지 오류가 나지 않는다. 복사해서 확인해보자
 			 *쿼리에 입력받은 값이 없을땐 빼놓는 것이 좋다.
 			 *클래스에 있는 변수와 컬럼값이 일치하기 위해서 별명을 설정한다. as
-			 *쿼리문에 있는 select나 from 등 구별하기 쉽게 대문자로 하는것이 좋다.
+			 *쿼리문에 있는 select나 from 등을 구별하기 쉽게 대문자로 하는것이 좋다.
 			*/
+			Class.forName("com.mysql.jdbc.Driver");
+			//db연결
 			String jdbcDriver = "jdbc:mysql://localhost:3306/jjdev?" + "useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
+			//ananunseo 테이블에 컬럼3개를 select한다
 			String sql = "SELECT anaunseo_id AS anaunseoId, anaunseo_name AS anaunseoName, anaunseo_age AS anaunseoAge FROM anaunseo ORDER BY anaunseo_id ASC";
 			
 			connection = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
-			//db연결
-			
-			preparedStatement = connection.prepareStatement(sql);
-			//ananunseo 테이블에 컬럼3개를 select한다
-			resultSet = preparedStatement.executeQuery();
 			//쿼리 실행 준비 및 실행
-			
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			//쿼리에 내용 있으면 배열에 대입
 			while(resultSet.next()) {
-				//쿼리에 내용 있으면 배열에 대입
 				Anaunseo anaunseo = new Anaunseo();
 				
 				anaunseo.setAnaunseoId(resultSet.getInt("anaunseoId"));
@@ -77,8 +74,10 @@ public class AnaunseoDao {
 		//배열 리턴
 		return list;
 	}
-	//아나운서 이름과 나이를 삽입하는 매서드
+	//Anaunseo type으로 매개변수를 받아 아나운서 이름과 나이를 삽입하는 매서드
 	public void insertAnaunseo(Anaunseo anaunseo) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
@@ -113,8 +112,10 @@ public class AnaunseoDao {
 			}
 		}
 	}
-	//아이디값을 받아 삭제를 위한 매서드
+	//아이디값을 받아 해당하는 데이터를 삭제하기 위한 매서드
 	public void deleteAnaunseo(int anaunseoId) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -148,6 +149,9 @@ public class AnaunseoDao {
 	}
 	//아이디값을 받아 한개만 이름과 나이를 Anaunseo 클래스에 세팅하여 anaunseo를 리턴하는 매서드
 	public Anaunseo selectAnaunseoOne(int anaunseoId) {
+		Connection connection = null;
+		ResultSet resultSet = null;
+		PreparedStatement preparedStatement = null;
 		Anaunseo anaunseo = new Anaunseo();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -194,6 +198,8 @@ public class AnaunseoDao {
 	}
 	//Anaunseo type을 매개변수로 받아 입력받은 이름과 나이를 수정하는 매서드
 	public void updateAnaunseo(Anaunseo anaunseo) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 

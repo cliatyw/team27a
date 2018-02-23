@@ -17,6 +17,7 @@
 		anaunseo.setAnaunseoId(Integer.parseInt(request.getParameter("anaunseoId")));
 		anaunseo.setAnaunseoName(request.getParameter("anaunseoName"));
 		anaunseo.setAnaunseoAge(Integer.parseInt(request.getParameter("anaunseoAge")));
+		//셋팅한 객체를 매개변수로 하여 updateAnaunseo매서드를 실행한다.
 		anaunseoDao.updateAnaunseo(anaunseo);
 		
 		response.sendRedirect(request.getContextPath() + "/anaunseo/anaunseoList.jsp");
