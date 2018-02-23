@@ -17,16 +17,28 @@
 		ArrayList<Actor> list = actordao.selectActorList();
 		%>	
 		<h1>남배우 목록</h1>
+		<%
+		if (session.getAttribute("memberId") != null) {
+		%>
 		<a href = "<%= request.getContextPath() %>/actor/insertActorForm.jsp">등록</a>
+		<%
+		}
+		%>
 		<table border="1">
 			<thead>
 				<tr>
 					<th>남배우 순서</th>
 					<th>남배우 이름</th>
 					<th>남배우 나이</th>
+		<%
+		if (session.getAttribute("memberId") != null) {
+		%>
 					<th>수정</th>
 					<th>삭제</th>
 				</tr>
+		<%
+		}
+		%>	
 			</thead>
 			<tbody>
 			<% 
@@ -36,10 +48,14 @@
 					<td><%= actor.getActorId() %></td>
 					<td><%= actor.getActorName() %></td>
 					<td><%= actor.getActorAge() %></td>
+				<%
+				if (session.getAttribute("memberId") != null) {
+				%>
 					<td><a href = "<%= request.getContextPath() %>/actor/updateActorForm.jsp?actorId=<%= actor.getActorId() %>">수정</a></td>
 					<td><a href = "<%= request.getContextPath() %>/actor/deleteActorAction.jsp?actorId=<%= actor.getActorId() %>">삭제</a></td>
 				</tr>
 			<%
+				}
 			}
 			%>
 			</tbody>	
