@@ -10,12 +10,9 @@
 		<title>updateActorForm.jsp</title>
 	</head>
 	<body>
-		<%
-		int actorId = Integer.parseInt(request.getParameter("actorId"));
-		System.out.println("actorId:"+actorId);
-		
+		<%		
 		ActorDao actordao = new ActorDao();
-		Actor actor = actordao.selectActorOne(actorId);
+		Actor actor = actordao.selectActorOne(Integer.parseInt(request.getParameter("actorId")));
 		%>
 		<h1>수정 화면</h1>
 		<form action="<%= request.getContextPath() %>/actor/updateActorAction.jsp" method="post">

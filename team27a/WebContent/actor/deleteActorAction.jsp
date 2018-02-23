@@ -9,14 +9,9 @@
 		<title>deleteActorAction.jsp</title>
 	</head>
 	<body>
-		<%
-		//get방식으로 전송된 actorId의 값을 받아온다.
-		int actorId = Integer.parseInt(request.getParameter("actorId"));
-		System.out.println("actorId:"+actorId);
-		
+		<%		
 		ActorDao actordao = new ActorDao();
-		actordao.deleteActor(actorId);
-		
+		actordao.deleteActor(Integer.parseInt(request.getParameter("actorId")));
 		response.sendRedirect(request.getContextPath()+"/actor/actorList.jsp");
 		%>
 	</body>

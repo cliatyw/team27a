@@ -52,8 +52,7 @@ public class ActorDao {
 			if (resultset != null) try { resultset.close(); } catch(SQLException ex) {}
 			if (statement != null) try { statement.close(); } catch(SQLException ex) {}
 			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
-		}
- 		 return list;
+		} return list;
 	}
     /*Dao(Data Access Object) DB를 사용해 데이터를 조회하거나 조작하는 기능을 전담하도록 만든 기능이므로
 	insertActorAction.jsp이 아닌 ActorDao에 insert부분의 기능을 추가해야함*/
@@ -111,6 +110,8 @@ public class ActorDao {
 			if (connection != null) try { connection.close(); } catch(SQLException ex) {}
 		}
 	}
+	/*수정화면에서 Name과 Age의 값을 받아오기 위해서 SELECT쿼리문을 이용해 검색하는 메소드로서,
+	Actor의 Id,Name , Age를 리턴한다.*/
 	public Actor selectActorOne(int actorId) {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -119,7 +120,7 @@ public class ActorDao {
 		/*드라이버로딩*/
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			
+			/*DB연결*/
 			String dbDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";
@@ -144,13 +145,14 @@ public class ActorDao {
 			if (resultset != null) try { resultset.close(); } catch(SQLException ex) {}
 		} return actor;
 	}
+	/*UPDATE쿼리문을 이용해서 수정처리를 하는 메소드로*/
 	public void updateActor(Actor actor) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		
+		/*드라이버로딩*/
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			
+			/*DB연결*/
 			String dbDriver = "jdbc:mysql://localhost:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 			String dbUser = "root";
 			String dbPass = "java0000";

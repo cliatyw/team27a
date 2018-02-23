@@ -28,10 +28,10 @@
 					<th>삭제</th>
 				</tr>
 			</thead>
+			<tbody>
 			<% 
 			for(Actor actor : list) {
-			%>	
-			<tbody>
+			%>			
 				<tr>
 					<td><%= actor.getActorId() %></td>
 					<td><%= actor.getActorName() %></td>
@@ -39,10 +39,10 @@
 					<td><a href = "<%= request.getContextPath() %>/actor/updateActorForm.jsp?actorId=<%= actor.getActorId() %>">수정</a></td>
 					<td><a href = "<%= request.getContextPath() %>/actor/deleteActorAction.jsp?actorId=<%= actor.getActorId() %>">삭제</a></td>
 				</tr>
-			</tbody>	
 			<%
 			}
 			%>
+			</tbody>	
 		</table>
 		<a href = "<%= request.getContextPath() %>/index.jsp">홈으로</a>
 	</body>

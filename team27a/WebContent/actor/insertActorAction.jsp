@@ -11,15 +11,10 @@
 	</head>
 	<body>
 		<%	
-		//화면에서 입력한 값을 받아옴
-		String actorName = request.getParameter("actorName");
-		int actorAge = Integer.parseInt(request.getParameter("actorAge"));
-		System.out.println(actorName);
-		System.out.println(actorAge);
 		//화면에서 받아온 값을 dto인 actor에 값을 세팅해준다
 		Actor actor = new Actor();
-		actor.setActorName(actorName);
-		actor.setActorAge(actorAge);
+		actor.setActorName(request.getParameter("actorName"));
+		actor.setActorAge(Integer.parseInt(request.getParameter("actorAge")));
 		
 		ActorDao actorDao = new ActorDao();
 		actorDao.insertActor(actor);

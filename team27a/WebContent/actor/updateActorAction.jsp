@@ -10,23 +10,15 @@
 		<title>updateActorAction.jsp</title>
 	</head>
 	<body>
-		<%
-		int actorId = Integer.parseInt(request.getParameter("actorId"));
-		System.out.println("updateActorAction.actorId:"+actorId);
-		
-		String actorName = request.getParameter("actorName");
-		System.out.println("updateActorAction.actorName:"+actorName);
-		
-		int actorAge = Integer.parseInt(request.getParameter("actorAge"));
-		System.out.println("updateActorAction.actorAge:"+actorAge);
-		
+		<%		
+		/* 받아온 Id,Name,Age의 값을 세팅해준다 */
 		Actor actor = new Actor();
-		actor.setActorId(actorId);
-		actor.setActorName(actorName);
-		actor.setActorAge(actorAge);
+		actor.setActorId(Integer.parseInt(request.getParameter("actorId")));
+		actor.setActorName(request.getParameter("actorName"));
+		actor.setActorAge(Integer.parseInt(request.getParameter("actorAge")));
 		
 		ActorDao actordao = new ActorDao();
-		actordao.UpdateActor(actor);
+		actordao.updateActor(actor);
 		
 		response.sendRedirect(request.getContextPath()+"/actor/actorList.jsp");
 		%>
